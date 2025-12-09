@@ -139,7 +139,7 @@ export default function Home() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/contact"
-              className="px-8 py-3 bg-accent text-accent-foreground rounded-lg hover:opacity-90 transition-opacity font-medium"
+              className="px-8 py-3 bg-accent text-accent-foreground rounded-lg font-medium transition-all duration-200 ease-out hover-lift hover:bg-accent/90"
             >
               Start the Conversation
             </Link>
@@ -147,7 +147,7 @@ export default function Home() {
               href="https://conduitofvalue.substack.com/"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-8 py-3 border-2 border-primary-foreground text-primary-foreground rounded-lg hover:bg-primary-foreground/10 transition-colors font-medium"
+              className="px-8 py-3 border-2 border-primary-foreground text-primary-foreground rounded-lg font-medium transition-all duration-200 ease-out hover-lift hover:bg-primary-foreground/10"
             >
               Explore Our Insights
             </a>
