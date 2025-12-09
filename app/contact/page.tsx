@@ -71,10 +71,10 @@ export default function ContactPage() {
               </div>
               <h3 className="text-lg font-semibold text-foreground mb-2">Email</h3>
               <a
-                href="mailto:hello@saorsagrowth.com"
+                href="mailto:Duncan@saorsapartners.com"
                 className="inline-flex items-center justify-center px-4 py-2 rounded-md border border-primary text-primary bg-primary/5 hover:bg-primary/10 hover:border-primary/80 transition-all duration-200 ease-out hover-lift text-sm font-medium"
               >
-                hello@saorsagrowth.com
+                Duncan@saorsapartners.com
               </a>
             </div>
 
@@ -99,10 +99,10 @@ export default function ContactPage() {
               </div>
               <h3 className="text-lg font-semibold text-foreground mb-2">Phone</h3>
               <a
-                href="tel:+1234567890"
+                href="tel:+19257840718"
                 className="inline-flex items-center justify-center px-4 py-2 rounded-md border border-primary text-primary bg-primary/5 hover:bg-primary/10 hover:border-primary/80 transition-all duration-200 ease-out hover-lift text-sm font-medium"
               >
-                +1 (234) 567-890
+                (925) 784-0718
               </a>
             </div>
           </div>

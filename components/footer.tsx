@@ -84,7 +84,7 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="mailto:hello@saorsagrowth.com"
+                  href="mailto:Duncan@saorsapartners.com"
                   className="inline-flex items-center gap-2 py-1.5 hover:text-accent transition-colors hover-underline"
                 >
                   <Mail size={14} />
