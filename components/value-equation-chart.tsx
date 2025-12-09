@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react"
 import Reveal from "./reveal"
+import { useEffect } from "react"
 
 type DataPoint = {
   month: string
@@ -21,6 +22,14 @@ const dataPoints: DataPoint[] = [
 
 export default function ValueEquationChart() {
   const [hovered, setHovered] = useState<number | null>(null)
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const update = () => setIsMobile(typeof window !== "undefined" && window.innerWidth < 640)
+    update()
+    window.addEventListener("resize", update)
+    return () => window.removeEventListener("resize", update)
+  }, [])
 
   const colors = {
     curve: "var(--color-primary)",
@@ -30,13 +39,21 @@ export default function ValueEquationChart() {
     tooltipText: "rgba(231,217,203,0.95)",
   }
 
-  const dims = {
-    width: 920,
-    height: 420,
-    padding: { top: 48, right: 72, bottom: 84, left: 96 },
-    tooltip: { w: 220, h: 92, offsetY: 14 },
-    baselineValue: 20,
-  }
+  const dims = isMobile
+    ? {
+        width: 520,
+        height: 360,
+        padding: { top: 40, right: 44, bottom: 72, left: 72 },
+        tooltip: { w: 200, h: 88, offsetY: 12 },
+        baselineValue: 20,
+      }
+    : {
+        width: 920,
+        height: 420,
+        padding: { top: 48, right: 72, bottom: 84, left: 96 },
+        tooltip: { w: 220, h: 92, offsetY: 14 },
+        baselineValue: 20,
+      }
 
   const chartWidth = dims.width - dims.padding.left - dims.padding.right
   const chartHeight = dims.height - dims.padding.top - dims.padding.bottom
@@ -101,7 +118,7 @@ export default function ValueEquationChart() {
           <div className="relative overflow-x-auto">
             <svg
               viewBox={`0 0 ${dims.width} ${dims.height}`}
-              className="w-full h-auto min-w-[540px]"
+              className="w-full h-auto min-w-[320px]"
               role="img"
               aria-label="The Value Equation chart comparing value added over time versus traditional consulting baseline."
             >
