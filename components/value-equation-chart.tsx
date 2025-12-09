@@ -97,7 +97,7 @@ export default function ValueEquationChart() {
 
         <Reveal className="bg-card border border-border rounded-xl p-6 md:p-8 shadow-sm">
           {/* Legend */}
-          <div className="flex flex-wrap items-center gap-6 mb-6 text-sm font-medium text-foreground/80">
+          <div className="flex flex-wrap items-center gap-4 md:gap-6 mb-6 text-xs md:text-sm font-medium text-foreground/80">
             <div className="flex items-center gap-2">
               <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full border-2 border-primary text-primary bg-card">
                 <span className="h-2 w-2 rounded-full bg-primary" />
@@ -118,7 +118,7 @@ export default function ValueEquationChart() {
           <div className="relative overflow-x-auto">
             <svg
               viewBox={`0 0 ${dims.width} ${dims.height}`}
-              className="w-full h-auto min-w-[320px]"
+              className="w-full h-auto min-w-[300px]"
               role="img"
               aria-label="The Value Equation chart comparing value added over time versus traditional consulting baseline."
             >
@@ -136,12 +136,12 @@ export default function ValueEquationChart() {
               </text>
 
               {/* Horizontal grid lines */}
-              {[20, 40, 60, 80, 100].map((tick) => {
+              {(isMobile ? [25, 50, 75, 100] : [20, 40, 60, 80, 100]).map((tick) => {
                 const y = dims.padding.top + chartHeight - (tick / 100) * chartHeight
                 return (
                   <g key={tick}>
                     <line x1={dims.padding.left} y1={y} x2={dims.width - dims.padding.right} y2={y} stroke={colors.grid} strokeWidth={1} />
-                    <text x={dims.padding.left - 12} y={y + 4} textAnchor="end" className="fill-foreground/40 text-[11px]">
+                    <text x={dims.padding.left - 10} y={y + 3} textAnchor="end" className="fill-foreground/40 text-[10px] md:text-[11px]">
                       {tick}%
                     </text>
                   </g>
@@ -176,11 +176,22 @@ export default function ValueEquationChart() {
               />
 
               {/* Value curve */}
-              <path d={pathD} fill="none" stroke={colors.curve} strokeWidth={4} strokeLinecap="round" strokeLinejoin="round" />
+              <path d={pathD} fill="none" stroke={colors.curve} strokeWidth={isMobile ? 3 : 4} strokeLinecap="round" strokeLinejoin="round" />
 
               {/* Data points + labels */}
               {points.map((point, i) => (
                 <g key={i}>
+                  {/* larger touch halo for mobile */}
+                  <circle
+                    cx={point.x}
+                    cy={point.y}
+                    r={hovered === i ? 16 : 14}
+                    fill="transparent"
+                    onMouseEnter={() => !isMobile && setHovered(i)}
+                    onMouseLeave={() => !isMobile && setHovered(null)}
+                    onClick={() => setHovered((prev) => (prev === i ? null : i))}
+                    style={{ cursor: "pointer" }}
+                  />
                   <circle
                     cx={point.x}
                     cy={point.y}
@@ -188,12 +199,13 @@ export default function ValueEquationChart() {
                     fill="var(--color-card)"
                     stroke={colors.curve}
                     strokeWidth={3}
-                    onMouseEnter={() => setHovered(i)}
-                    onMouseLeave={() => setHovered(null)}
+                    onMouseEnter={() => !isMobile && setHovered(i)}
+                    onMouseLeave={() => !isMobile && setHovered(null)}
+                    onClick={() => setHovered((prev) => (prev === i ? null : i))}
                     style={{ cursor: "pointer" }}
                     filter={hovered === i ? "drop-shadow(0 2px 6px rgba(61,68,53,0.35))" : "none"}
                   />
-                  <text x={point.x} y={dims.height - 24} textAnchor="middle" className="fill-foreground/70 text-[11px]">
+                  <text x={point.x} y={dims.height - 24} textAnchor="middle" className="fill-foreground/70 text-[10px] md:text-[11px]">
                     {point.month}
                   </text>
                 </g>
@@ -208,23 +220,23 @@ export default function ValueEquationChart() {
                     return (
                       <>
                         <rect x={tx} y={ty} width={dims.tooltip.w} height={dims.tooltip.h} rx={12} fill={colors.tooltipBg} />
-                        <text x={tx + 14} y={ty + 22} className="text-sm font-semibold" fill={colors.tooltipText}>
+                        <text x={tx + 12} y={ty + 20} className="text-[13px] md:text-sm font-semibold" fill={colors.tooltipText}>
                           {point.month}
                         </text>
-                        <g transform={`translate(${tx + 14}, ${ty + 40})`}>
+                        <g transform={`translate(${tx + 12}, ${ty + 36})`}>
                           <rect width={9} height={9} rx={2} fill={colors.curve} />
-                          <text x={14} y={8} className="text-xs" fill={colors.tooltipText}>
+                          <text x={14} y={8} className="text-[11px] md:text-xs" fill={colors.tooltipText}>
                             Impact: {point.label} (Cumulative)
                           </text>
                         </g>
-                        <g transform={`translate(${tx + 14}, ${ty + 58})`}>
+                        <g transform={`translate(${tx + 12}, ${ty + 52})`}>
                           <rect width={9} height={9} rx={2} fill="rgba(255,255,255,0.7)" stroke={colors.baseline} />
-                          <text x={14} y={8} className="text-xs" fill={colors.tooltipText}>
+                          <text x={14} y={8} className="text-[11px] md:text-xs" fill={colors.tooltipText}>
                             Input: Constant Hourly Billing
                           </text>
                         </g>
                         {point.note && (
-                          <text x={tx + 14} y={ty + 78} className="text-[11px]" fill="rgba(231,217,203,0.7)">
+                          <text x={tx + 12} y={ty + 70} className="text-[11px]" fill="rgba(231,217,203,0.7)">
                             {point.note}
                           </text>
                         )}
