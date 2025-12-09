@@ -1,0 +1,34 @@
+<svg width="460" height="460" viewBox="0 0 460 460" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <title>Saorsa Growth Partners Logo</title>
+  <rect
+    x="52"
+    y="110"
+    width="356"
+    height="240"
+    rx="48"
+    stroke="#3d4435"
+    stroke-width="52"
+    fill="none"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+  <path
+    d="M230 370C230 300 230 240 230 154"
+    stroke="#3d4435"
+    stroke-width="38"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+  <path
+    d="M230 166C230 110 270 66 330 86C312 126 278 158 230 166Z"
+    fill="#3d4435"
+  />
+  <path
+    d="M230 210C230 172 194 142 144 140C166 180 196 206 230 210Z"
+    fill="#3d4435"
+  />
+  <path
+    d="M230 246C270 224 310 232 340 262C296 278 258 272 230 246Z"
+    fill="#3d4435"
+  />
+</svg>

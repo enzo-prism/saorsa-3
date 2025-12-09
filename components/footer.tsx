@@ -1,4 +1,6 @@
+import Image from "next/image"
 import Link from "next/link"
+import { Home, BookOpen, Mail, Link2, Linkedin, Twitter, MessageCircle, Users } from "lucide-react"
 
 export default function Footer() {
   const currentYear = new Date().getFullYear()
@@ -10,9 +12,14 @@ export default function Footer() {
           {/* Brand */}
           <div className="md:col-span-1">
             <div className="flex items-center space-x-2 mb-4">
-              <div className="w-8 h-8 bg-accent rounded-lg flex items-center justify-center">
-                <span className="font-bold text-lg text-primary">S</span>
-              </div>
+              <Image
+                src="/saorsa-logo.webp"
+                alt="Saorsa Growth Partners logo"
+                width={32}
+                height={32}
+                className="h-8 w-8 object-contain rounded-md bg-primary-foreground/10"
+                priority
+              />
               <span className="font-bold text-lg">Saorsa</span>
             </div>
             <p className="text-sm text-primary-foreground/70">Your embedded financial and operational partners.</p>
@@ -23,17 +30,26 @@ export default function Footer() {
             <h3 className="font-semibold mb-4 text-sm">Company</h3>
             <ul className="space-y-1 text-sm">
               <li>
-                <Link href="/" className="inline-block py-1.5 hover:text-accent transition-colors">
+                <Link href="/" className="inline-flex items-center gap-2 py-1.5 hover:text-accent transition-colors">
+                  <Home size={14} />
                   Home
                 </Link>
               </li>
               <li>
-                <Link href="/insights" className="inline-block py-1.5 hover:text-accent transition-colors">
+                <Link
+                  href="/insights"
+                  className="inline-flex items-center gap-2 py-1.5 hover:text-accent transition-colors"
+                >
+                  <BookOpen size={14} />
                   Insights
                 </Link>
               </li>
               <li>
-                <Link href="/partners" className="inline-block py-1.5 hover:text-accent transition-colors">
+                <Link
+                  href="/partners"
+                  className="inline-flex items-center gap-2 py-1.5 hover:text-accent transition-colors"
+                >
+                  <Users size={14} />
                   Partners
                 </Link>
               </li>
@@ -49,18 +65,27 @@ export default function Footer() {
                   href="https://conduitofvalue.substack.com/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-block py-1.5 hover:text-accent transition-colors"
+                  className="inline-flex items-center gap-2 py-1.5 hover:text-accent transition-colors"
                 >
+                  <Link2 size={14} />
                   Conduit of Value
                 </a>
               </li>
               <li>
-                <Link href="/contact" className="inline-block py-1.5 hover:text-accent transition-colors">
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center gap-2 py-1.5 hover:text-accent transition-colors"
+                >
+                  <Mail size={14} />
                   Contact
                 </Link>
               </li>
               <li>
-                <a href="mailto:hello@saorsagrowth.com" className="inline-block py-1.5 hover:text-accent transition-colors">
+                <a
+                  href="mailto:hello@saorsagrowth.com"
+                  className="inline-flex items-center gap-2 py-1.5 hover:text-accent transition-colors"
+                >
+                  <Mail size={14} />
                   Email
                 </a>
               </li>
@@ -76,8 +101,9 @@ export default function Footer() {
                   href="https://linkedin.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-block py-1.5 hover:text-accent transition-colors"
+                  className="inline-flex items-center gap-2 py-1.5 hover:text-accent transition-colors"
                 >
+                  <Linkedin size={14} />
                   LinkedIn
                 </a>
               </li>
@@ -86,13 +112,18 @@ export default function Footer() {
                   href="https://twitter.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-block py-1.5 hover:text-accent transition-colors"
+                  className="inline-flex items-center gap-2 py-1.5 hover:text-accent transition-colors"
                 >
+                  <Twitter size={14} />
                   Twitter
                 </a>
               </li>
               <li>
-                <a href="mailto:hello@saorsagrowth.com" className="inline-block py-1.5 hover:text-accent transition-colors">
+                <a
+                  href="mailto:hello@saorsagrowth.com"
+                  className="inline-flex items-center gap-2 py-1.5 hover:text-accent transition-colors"
+                >
+                  <MessageCircle size={14} />
                   Say Hello
                 </a>
               </li>

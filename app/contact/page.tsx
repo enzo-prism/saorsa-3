@@ -3,7 +3,7 @@
 import type React from "react"
 
 import { useState } from "react"
-import { Mail, Phone, Calendar } from "lucide-react"
+import { Mail, Phone, Calendar, Lightbulb } from "lucide-react"
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -53,8 +53,8 @@ export default function ContactPage() {
             Let's Discuss Your Partnership
           </h1>
           <p className="text-lg md:text-xl text-foreground/70 max-w-2xl mx-auto leading-relaxed">
-            We approach every conversation with the same rigor we bring to our engagements. Let's explore whether we're
-            the right partners for your journey.
+            We approach every conversation with investor-level rigor. Let's explore whether a partnership trial makes
+            sense and how we can create measurable value together.
           </p>
         </div>
       </section>
@@ -65,8 +65,8 @@ export default function ContactPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
             {/* Email */}
             <div className="text-center md:text-left">
-              <div className="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center mx-auto md:mx-0 mb-4">
-                <Mail size={24} className="text-accent" />
+              <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto md:mx-0 mb-4">
+                <Mail size={24} className="text-primary" />
               </div>
               <h3 className="text-lg font-semibold text-foreground mb-2">Email</h3>
               <a
@@ -79,8 +79,8 @@ export default function ContactPage() {
 
             {/* Calendar */}
             <div className="text-center md:text-left">
-              <div className="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center mx-auto md:mx-0 mb-4">
-                <Calendar size={24} className="text-accent" />
+              <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto md:mx-0 mb-4">
+                <Calendar size={24} className="text-primary" />
               </div>
               <h3 className="text-lg font-semibold text-foreground mb-2">Schedule Call</h3>
               <a href="#" className="text-foreground/70 hover:text-accent transition-colors">
@@ -91,8 +91,8 @@ export default function ContactPage() {
 
             {/* Phone */}
             <div className="text-center md:text-left">
-              <div className="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center mx-auto md:mx-0 mb-4">
-                <Phone size={24} className="text-accent" />
+              <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto md:mx-0 mb-4">
+                <Phone size={24} className="text-primary" />
               </div>
               <h3 className="text-lg font-semibold text-foreground mb-2">Phone</h3>
               <a href="tel:+1234567890" className="text-foreground/70 hover:text-accent transition-colors">
@@ -196,31 +196,34 @@ export default function ContactPage() {
                     href="https://calendly.com"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-start gap-4 p-4 bg-muted/50 rounded-lg hover:bg-muted transition-colors group"
+                    className="flex items-start gap-4 p-4 bg-muted/50 rounded-lg hover:bg-muted/80 transition-colors group"
                   >
-                    <Calendar size={24} className="text-accent flex-shrink-0 mt-1" />
+                    <Calendar size={24} className="text-primary flex-shrink-0 mt-1 transition-colors group-hover:text-foreground" />
                     <div>
-                      <h3 className="font-semibold text-foreground group-hover:text-accent transition-colors">
+                      <h3 className="font-semibold text-foreground group-hover:text-foreground transition-colors">
                         Book a Consultation
                       </h3>
-                      <p className="text-sm text-foreground/70 mt-1">
+                      <p className="text-sm text-foreground/80 group-hover:text-foreground mt-1">
                         Schedule a 30-minute discovery call with our team
                       </p>
                     </div>
                   </a>
 
                   <a
-                    href="https://conduitofvalue.substack.com/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-start gap-4 p-4 bg-muted/50 rounded-lg hover:bg-muted transition-colors group"
+                    href="/insights"
+                    className="flex items-start gap-4 p-4 bg-muted/50 rounded-lg hover:bg-muted/80 transition-colors group"
                   >
-                    <Mail size={24} className="text-accent flex-shrink-0 mt-1" />
+                    <Lightbulb
+                      size={24}
+                      className="text-primary flex-shrink-0 mt-1 transition-colors group-hover:text-foreground"
+                    />
                     <div>
-                      <h3 className="font-semibold text-foreground group-hover:text-accent transition-colors">
+                      <h3 className="font-semibold text-foreground group-hover:text-foreground transition-colors">
                         The Conduit of Value
                       </h3>
-                      <p className="text-sm text-foreground/70 mt-1">Weekly insights on growth and business strategy</p>
+                      <p className="text-sm text-foreground/80 group-hover:text-foreground mt-1">
+                        Weekly insights on growth and business strategy
+                      </p>
                     </div>
                   </a>
                 </div>
@@ -231,7 +234,7 @@ export default function ContactPage() {
                 <ol className="space-y-3 text-sm text-foreground/70">
                   <li className="flex gap-3">
                     <span className="font-semibold text-primary flex-shrink-0">1.</span>
-                    <span>Discovery conversation to understand if we should pursue this together</span>
+                    <span>Discovery conversation to decide if we should pursue a partnership trial together</span>
                   </li>
                   <li className="flex gap-3">
                     <span className="font-semibold text-primary flex-shrink-0">2.</span>
@@ -239,11 +242,11 @@ export default function ContactPage() {
                   </li>
                   <li className="flex gap-3">
                     <span className="font-semibold text-primary flex-shrink-0">3.</span>
-                    <span>Proposal structured as a partnership trial with clear success metrics</span>
+                    <span>Proposal structured as a partnership trial with clear success metrics and retainer alignment</span>
                   </li>
                   <li className="flex gap-3">
                     <span className="font-semibold text-primary flex-shrink-0">4.</span>
-                    <span>Results-focused engagement tied to measurable business outcomes</span>
+                    <span>Results-focused engagement tied to measurable outcomes and long-term fit</span>
                   </li>
                 </ol>
               </div>

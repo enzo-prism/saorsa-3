@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { ArrowRight, ExternalLink } from "lucide-react"
+import { ArrowRight, ExternalLink, ChevronRight } from "lucide-react"
 import { getSubstackPosts, formatDate } from "@/lib/substack"
 import NewsletterSignup from "@/components/newsletter-signup"
 
@@ -10,6 +10,26 @@ export default async function InsightsPage() {
 
   return (
     <main className="flex flex-col">
+      <div className="w-full bg-card/80 backdrop-blur-sm border-b border-border">
+        <nav
+          className="max-w-6xl w-full mx-auto px-4 py-3 text-xs md:text-sm text-foreground/70"
+          aria-label="Breadcrumb"
+        >
+          <ol className="flex flex-wrap items-center gap-2">
+            <li>
+              <Link href="/" className="hover:text-foreground transition-colors">
+                Home
+              </Link>
+            </li>
+            <li aria-hidden="true" className="flex items-center text-foreground/40">
+              <ChevronRight size={14} />
+            </li>
+            <li aria-current="page" className="text-foreground font-medium">
+              Insights
+            </li>
+          </ol>
+        </nav>
+      </div>
       {/* Hero */}
       <section className="py-12 md:py-20 px-4 bg-gradient-to-br from-secondary/20 via-background to-background">
         <div className="max-w-4xl mx-auto text-center">
@@ -61,11 +81,11 @@ export default async function InsightsPage() {
                         </span>
                         <span className="text-xs text-foreground/50">{formatDate(post.pubDate)}</span>
                       </div>
-                      <h3 className="text-lg font-semibold text-foreground mb-3 group-hover:text-accent transition-colors line-clamp-2">
+                      <h3 className="text-lg font-semibold text-foreground mb-3 group-hover:text-primary transition-colors line-clamp-2">
                         {post.title}
                       </h3>
                       <p className="text-foreground/70 text-sm mb-4 flex-grow line-clamp-3">{post.description}</p>
-                      <div className="flex items-center gap-2 text-accent font-medium text-sm">
+                      <div className="flex items-center gap-2 text-primary font-medium text-sm">
                         Read Article
                         <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
                       </div>

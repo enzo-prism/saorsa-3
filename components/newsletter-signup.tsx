@@ -25,7 +25,7 @@ export default function NewsletterSignup() {
               href="https://conduitofvalue.substack.com/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-accent hover:underline"
+              className="text-primary hover:underline"
             >
               visit Substack directly
             </a>

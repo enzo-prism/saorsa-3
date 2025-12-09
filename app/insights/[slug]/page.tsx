@@ -1,9 +1,10 @@
 import { notFound } from "next/navigation"
 import Link from "next/link"
-import { ArrowLeft, ExternalLink, Calendar, User } from "lucide-react"
+import { ArrowLeft, ExternalLink, Calendar, User, ChevronRight } from "lucide-react"
 import { getSubstackPost, getSubstackPosts, formatDate } from "@/lib/substack"
 import ArticleContent from "@/components/article-content"
 import NewsletterSignup from "@/components/newsletter-signup"
+import ShareActions from "@/components/share-actions"
 import type { Metadata } from "next"
 
 export const revalidate = 3600 // Revalidate every hour
@@ -50,6 +51,37 @@ export default async function ArticlePage({ params }: PageProps) {
 
   return (
     <main className="flex flex-col">
+      <div className="w-full bg-card/80 backdrop-blur-sm border-b border-border">
+        <nav
+          className="max-w-6xl w-full mx-auto px-4 py-3 text-xs md:text-sm text-foreground/70"
+          aria-label="Breadcrumb"
+        >
+          <ol className="flex flex-wrap items-center gap-2">
+            <li>
+              <Link href="/" className="hover:text-foreground transition-colors">
+                Home
+              </Link>
+            </li>
+            <li aria-hidden="true" className="flex items-center text-foreground/40">
+              <ChevronRight size={14} />
+            </li>
+            <li>
+              <Link href="/insights" className="hover:text-foreground transition-colors">
+                Insights
+              </Link>
+            </li>
+            <li aria-hidden="true" className="flex items-center text-foreground/40">
+              <ChevronRight size={14} />
+            </li>
+            <li
+              aria-current="page"
+              className="text-foreground font-medium line-clamp-1 max-w-[180px] sm:max-w-[260px] md:max-w-[360px]"
+            >
+              {post.title}
+            </li>
+          </ol>
+        </nav>
+      </div>
       {/* Article Header */}
       <section className="py-12 md:py-16 px-4 bg-gradient-to-br from-secondary/20 via-background to-background">
         <div className="max-w-3xl mx-auto">
@@ -67,25 +99,30 @@ export default async function ArticlePage({ params }: PageProps) {
             {post.title}
           </h1>
 
-          {/* Meta */}
-          <div className="flex flex-wrap items-center gap-4 text-foreground/60 text-sm">
-            <div className="flex items-center gap-2">
-              <User size={16} />
-              <span>{post.author}</span>
+          <div className="flex flex-col gap-4 md:gap-3">
+            {/* Meta */}
+            <div className="flex flex-wrap items-center gap-4 text-foreground/60 text-sm">
+              <div className="flex items-center gap-2">
+                <User size={16} />
+                <span>{post.author}</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Calendar size={16} />
+                <time dateTime={post.pubDate.toISOString()}>{formatDate(post.pubDate)}</time>
+              </div>
+              <a
+                href={post.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-1 text-accent hover:underline"
+              >
+                Read on Substack
+                <ExternalLink size={14} />
+              </a>
             </div>
-            <div className="flex items-center gap-2">
-              <Calendar size={16} />
-              <time dateTime={post.pubDate.toISOString()}>{formatDate(post.pubDate)}</time>
-            </div>
-            <a
-              href={post.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-1 text-accent hover:underline"
-            >
-              Read on Substack
-              <ExternalLink size={14} />
-            </a>
+
+            {/* Share */}
+            <ShareActions title={post.title} fallbackUrl={post.link} />
           </div>
         </div>
       </section>
