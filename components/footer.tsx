@@ -1,6 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
-import { Home, BookOpen, Mail, Newspaper, Linkedin, Users, PhoneCall } from "lucide-react"
+import { Home, BookOpen, Mail, Newspaper, Linkedin, Users, PhoneCall, Compass } from "lucide-react"
 
 export default function Footer() {
   const currentYear = new Date().getFullYear()
@@ -53,6 +53,15 @@ export default function Footer() {
                 >
                   <Users size={14} />
                   Partners
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/guiding-principles"
+                  className="inline-flex items-center gap-2 py-1.5 hover:text-accent transition-colors"
+                >
+                  <Compass size={14} />
+                  Guiding Principles
                 </Link>
               </li>
             </ul>
