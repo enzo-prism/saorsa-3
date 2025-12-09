@@ -17,7 +17,7 @@ const dataPoints: DataPoint[] = [
   { month: "Month 6", value: 50, label: "50%" },
   { month: "Month 9", value: 72, label: "75%", note: "Momentum inflection" },
   { month: "Month 12", value: 88, label: "90%" },
-  { month: "Year 2", value: 100, label: "100%", note: "Asset realized" },
+  { month: "Year 2", value: 100, label: "100%" },
 ]
 
 export default function ValueEquationChart() {
