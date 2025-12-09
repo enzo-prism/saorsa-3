@@ -48,7 +48,7 @@ export default function Navigation() {
           {/* Mobile menu button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 rounded-md text-foreground hover:bg-muted"
+            className="md:hidden p-2.5 rounded-md text-foreground hover:bg-muted"
           >
             {isOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -61,7 +61,7 @@ export default function Navigation() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="block text-sm font-medium text-foreground/70 hover:text-primary px-2 py-2 transition-colors"
+                className="block text-sm font-medium text-foreground/70 hover:text-primary px-3 py-3 transition-colors"
                 onClick={() => setIsOpen(false)}
               >
                 {item.label}

@@ -41,7 +41,7 @@ export default async function InsightsPage() {
                 <Link key={post.slug} href={`/insights/${post.slug}`} className="group cursor-pointer">
                   <div className="bg-card rounded-lg border border-border overflow-hidden hover:border-accent/50 transition-all hover:shadow-lg h-full flex flex-col">
                     {post.imageUrl && (
-                      <div className="relative h-48 overflow-hidden bg-muted">
+                      <div className="relative h-40 md:h-48 overflow-hidden bg-muted">
                         <img
                           src={post.imageUrl}
                           alt={post.title}
@@ -50,7 +50,7 @@ export default async function InsightsPage() {
                       </div>
                     )}
                     {!post.imageUrl && (
-                      <div className="relative h-48 overflow-hidden bg-gradient-to-br from-primary/10 to-accent/10 flex items-center justify-center">
+                      <div className="relative h-40 md:h-48 overflow-hidden bg-gradient-to-br from-primary/10 to-accent/10 flex items-center justify-center">
                         <span className="text-6xl font-bold text-primary/20">S</span>
                       </div>
                     )}

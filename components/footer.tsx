@@ -21,19 +21,19 @@ export default function Footer() {
           {/* Quick Links */}
           <div>
             <h3 className="font-semibold mb-4 text-sm">Company</h3>
-            <ul className="space-y-2 text-sm">
+            <ul className="space-y-1 text-sm">
               <li>
-                <Link href="/" className="hover:text-accent transition-colors">
+                <Link href="/" className="inline-block py-1.5 hover:text-accent transition-colors">
                   Home
                 </Link>
               </li>
               <li>
-                <Link href="/insights" className="hover:text-accent transition-colors">
+                <Link href="/insights" className="inline-block py-1.5 hover:text-accent transition-colors">
                   Insights
                 </Link>
               </li>
               <li>
-                <Link href="/partners" className="hover:text-accent transition-colors">
+                <Link href="/partners" className="inline-block py-1.5 hover:text-accent transition-colors">
                   Partners
                 </Link>
               </li>
@@ -43,24 +43,24 @@ export default function Footer() {
           {/* Resources */}
           <div>
             <h3 className="font-semibold mb-4 text-sm">Resources</h3>
-            <ul className="space-y-2 text-sm">
+            <ul className="space-y-1 text-sm">
               <li>
                 <a
                   href="https://conduitofvalue.substack.com/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-accent transition-colors"
+                  className="inline-block py-1.5 hover:text-accent transition-colors"
                 >
                   Conduit of Value
                 </a>
               </li>
               <li>
-                <Link href="/contact" className="hover:text-accent transition-colors">
+                <Link href="/contact" className="inline-block py-1.5 hover:text-accent transition-colors">
                   Contact
                 </Link>
               </li>
               <li>
-                <a href="mailto:hello@saorsagrowth.com" className="hover:text-accent transition-colors">
+                <a href="mailto:hello@saorsagrowth.com" className="inline-block py-1.5 hover:text-accent transition-colors">
                   Email
                 </a>
               </li>
@@ -70,13 +70,13 @@ export default function Footer() {
           {/* Connect */}
           <div>
             <h3 className="font-semibold mb-4 text-sm">Connect</h3>
-            <ul className="space-y-2 text-sm">
+            <ul className="space-y-1 text-sm">
               <li>
                 <a
                   href="https://linkedin.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-accent transition-colors"
+                  className="inline-block py-1.5 hover:text-accent transition-colors"
                 >
                   LinkedIn
                 </a>
@@ -86,13 +86,13 @@ export default function Footer() {
                   href="https://twitter.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-accent transition-colors"
+                  className="inline-block py-1.5 hover:text-accent transition-colors"
                 >
                   Twitter
                 </a>
               </li>
               <li>
-                <a href="mailto:hello@saorsagrowth.com" className="hover:text-accent transition-colors">
+                <a href="mailto:hello@saorsagrowth.com" className="inline-block py-1.5 hover:text-accent transition-colors">
                   Say Hello
                 </a>
               </li>
@@ -104,10 +104,10 @@ export default function Footer() {
         <div className="border-t border-primary-foreground/20 pt-8 flex flex-col sm:flex-row justify-between items-center text-sm text-primary-foreground/70">
           <p>&copy; {currentYear} Saorsa Growth Partners. All rights reserved.</p>
           <div className="flex space-x-6 mt-4 sm:mt-0">
-            <a href="#" className="hover:text-accent transition-colors">
+            <a href="#" className="inline-block py-1.5 hover:text-accent transition-colors">
               Privacy
             </a>
-            <a href="#" className="hover:text-accent transition-colors">
+            <a href="#" className="inline-block py-1.5 hover:text-accent transition-colors">
               Terms
             </a>
           </div>
