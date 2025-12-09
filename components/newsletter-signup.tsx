@@ -6,13 +6,22 @@ import { CheckCircle2 } from "lucide-react"
 export default function NewsletterSignup() {
   const [email, setEmail] = useState("")
   const [submitted, setSubmitted] = useState(false)
+  const [error, setError] = useState("")
+  const [loading, setLoading] = useState(false)
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
+    if (!email.trim()) {
+      setError("Please enter your email to subscribe.")
+      return
+    }
+    setError("")
+    setLoading(true)
     // Placeholder success; hook up backend later
-    if (!email.trim()) return
-    setSubmitted(true)
-    setTimeout(() => setSubmitted(false), 3000)
+    setTimeout(() => {
+      setSubmitted(true)
+      setLoading(false)
+    }, 400)
   }
 
   return (
@@ -25,7 +34,11 @@ export default function NewsletterSignup() {
           </p>
 
           {submitted ? (
-            <div className="flex items-center gap-3 rounded-lg border border-primary/40 bg-primary/10 px-4 py-3 text-primary">
+            <div
+              className="flex items-center gap-3 rounded-lg border border-primary/40 bg-primary/10 px-4 py-3 text-primary"
+              role="status"
+              aria-live="polite"
+            >
               <CheckCircle2 size={20} />
               <div>
                 <p className="font-semibold">Subscribed</p>
@@ -38,17 +51,23 @@ export default function NewsletterSignup() {
                 type="email"
                 placeholder="Enter your email"
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e) => {
+                  setEmail(e.target.value)
+                  setError("")
+                  if (submitted) setSubmitted(false)
+                }}
                 className="flex-1 px-4 py-3 bg-background/80 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/40 text-foreground placeholder-foreground/50"
               />
               <button
                 type="submit"
-                className="px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:opacity-90 transition-opacity font-medium whitespace-nowrap"
+                disabled={loading}
+                className="px-6 py-3 bg-primary text-primary-foreground rounded-lg font-medium whitespace-nowrap transition-all duration-200 ease-out hover:opacity-90 disabled:opacity-50"
               >
-                Subscribe
+                {loading ? "Subscribing..." : "Subscribe"}
               </button>
             </form>
           )}
+          {error && !submitted && <p className="text-xs text-destructive mt-2">{error}</p>}
 
           <p className="text-xs text-foreground/60 mt-3">
             Or{" "}
