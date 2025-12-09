@@ -21,12 +21,12 @@ export default function GuidingPrinciplesPage() {
   return (
     <main className="flex flex-col">
       {/* Hero */}
-      <section className="relative overflow-hidden py-12 md:py-16 px-4 bg-gradient-to-br from-secondary/20 via-background to-background">
+      <section className="relative overflow-hidden py-10 md:py-14 px-4 bg-gradient-to-br from-secondary/20 via-background to-background">
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute -top-24 -left-10 h-40 w-40 rounded-full bg-primary/10 blur-3xl" />
           <div className="absolute bottom-0 right-0 h-48 w-48 rounded-full bg-accent/15 blur-3xl" />
         </div>
-        <div className="max-w-5xl mx-auto relative z-10 space-y-6">
+        <div className="max-w-5xl mx-auto relative z-10 space-y-5 md:space-y-6">
           <Reveal>
             <div className="overflow-hidden rounded-2xl border border-border shadow-sm bg-card/70">
               <img
@@ -36,7 +36,7 @@ export default function GuidingPrinciplesPage() {
               />
             </div>
           </Reveal>
-          <Reveal className="text-center space-y-4">
+          <Reveal className="text-center space-y-3 md:space-y-4">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-primary/30 bg-primary/5 text-primary text-xs font-semibold uppercase tracking-[0.08em]">
               The Saorsa Way
             </div>
@@ -49,15 +49,19 @@ export default function GuidingPrinciplesPage() {
       </section>
 
       {/* Principles */}
-      <section className="py-14 md:py-20 px-4 bg-background">
-        <div className="max-w-5xl mx-auto space-y-10">
-          <Reveal className="bg-card border border-border rounded-xl p-6 md:p-8 shadow-sm">
+      <section className="py-12 md:py-18 px-4 bg-background">
+        <div className="max-w-5xl mx-auto space-y-8 md:space-y-10">
+          <Reveal className="bg-card border border-border rounded-xl p-5 md:p-7 shadow-sm">
             <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-2">Principles</h2>
-            <p className="text-sm text-foreground/70 mb-6">A practical framework for how we partner, deploy capital, and grow together.</p>
+            <p className="text-sm text-foreground/70 mb-5 md:mb-6">A practical framework for how we partner, deploy capital, and grow together.</p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
               {principles.map((item, idx) => (
-                <Reveal key={item.title} delay={0.035 * idx} className="relative overflow-hidden rounded-lg border border-border bg-muted/40 p-4 md:p-5 hover:border-primary/40 hover:shadow-sm transition-colors">
+                <Reveal
+                  key={item.title}
+                  delay={0.035 * idx}
+                  className="relative overflow-hidden rounded-lg border border-border bg-muted/40 p-4 md:p-5 hover:border-primary/40 hover:shadow-sm transition-colors"
+                >
                   <div className="absolute left-0 top-0 h-full w-1 bg-primary/30" />
                   <p className="text-xs font-semibold text-primary mb-1 tracking-[0.06em]">{idx + 1}. {item.title}</p>
                   <p className="text-foreground/80 leading-relaxed text-sm md:text-base">{item.body}</p>
@@ -66,7 +70,7 @@ export default function GuidingPrinciplesPage() {
             </div>
           </Reveal>
 
-          <Reveal className="bg-card border border-border rounded-xl p-6 md:p-8 shadow-sm">
+          <Reveal className="bg-card border border-border rounded-xl p-5 md:p-7 shadow-sm">
             <div className="flex flex-col gap-3 md:gap-4">
               <div className="inline-flex items-center gap-2 px-3 py-1 bg-primary/10 text-primary text-xs font-semibold rounded-full w-fit">
                 Meaning
@@ -78,8 +82,8 @@ export default function GuidingPrinciplesPage() {
             </div>
           </Reveal>
 
-          <Reveal className="bg-muted/30 border border-border rounded-xl p-6 md:p-8 shadow-sm">
-            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+          <Reveal className="bg-muted/30 border border-border rounded-xl p-5 md:p-7 shadow-sm">
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 md:gap-6">
               <div className="space-y-2 text-foreground/80 text-sm md:text-base">
                 <h3 className="text-lg font-semibold text-foreground">Saorsa Growth Partners</h3>
                 <p>San Francisco, California</p>
