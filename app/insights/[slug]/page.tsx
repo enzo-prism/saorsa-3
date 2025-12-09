@@ -6,6 +6,7 @@ import ArticleContent from "@/components/article-content"
 import NewsletterSignup from "@/components/newsletter-signup"
 import ShareActions from "@/components/share-actions"
 import Reveal from "@/components/reveal"
+import ScrollProgress from "@/components/scroll-progress"
 import type { Metadata } from "next"
 
 export const revalidate = 3600 // Revalidate every hour
@@ -52,6 +53,7 @@ export default async function ArticlePage({ params }: PageProps) {
 
   return (
     <main className="flex flex-col">
+      <ScrollProgress />
       <div className="w-full bg-card/80 backdrop-blur-sm border-b border-border">
         <nav
           className="max-w-6xl w-full mx-auto px-4 py-3 text-xs md:text-sm text-foreground/70"
@@ -115,7 +117,7 @@ export default async function ArticlePage({ params }: PageProps) {
                 href={post.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-1 text-accent hover:underline"
+                className="flex items-center gap-1 text-primary font-semibold hover:underline"
               >
                 Read on Substack
                 <ExternalLink size={14} />
@@ -162,7 +164,7 @@ export default async function ArticlePage({ params }: PageProps) {
             href={post.link}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-5 py-2 bg-primary text-primary-foreground rounded-lg hover:opacity-90 transition-opacity font-medium"
+            className="inline-flex items-center gap-2 px-5 py-2 bg-primary text-primary-foreground rounded-lg hover:opacity-90 transition-opacity font-semibold"
           >
             Read on Substack
             <ExternalLink size={18} />

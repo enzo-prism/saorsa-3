@@ -3,6 +3,7 @@ import { ArrowRight, ExternalLink, ChevronRight } from "lucide-react"
 import { getSubstackPosts, formatDate } from "@/lib/substack"
 import NewsletterSignup from "@/components/newsletter-signup"
 import Reveal from "@/components/reveal"
+import ScrollProgress from "@/components/scroll-progress"
 
 export const revalidate = 3600 // Revalidate every hour
 
@@ -11,6 +12,7 @@ export default async function InsightsPage() {
 
   return (
     <main className="flex flex-col">
+      <ScrollProgress />
       <div className="w-full bg-card/80 backdrop-blur-sm border-b border-border">
         <nav
           className="max-w-6xl w-full mx-auto px-4 py-3 text-xs md:text-sm text-foreground/70"
