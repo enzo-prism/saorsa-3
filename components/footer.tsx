@@ -1,6 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
-import { Home, BookOpen, Mail, Link2, Linkedin, Users } from "lucide-react"
+import { Home, BookOpen, Mail, Newspaper, Linkedin, Users } from "lucide-react"
 
 export default function Footer() {
   const currentYear = new Date().getFullYear()
@@ -69,8 +69,8 @@ export default function Footer() {
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 py-1.5 hover:text-accent transition-colors hover-underline"
                 >
-                  <Link2 size={14} />
-                  Conduit of Value
+                  <Newspaper size={14} />
+                  Substack
                 </a>
               </li>
               <li>
