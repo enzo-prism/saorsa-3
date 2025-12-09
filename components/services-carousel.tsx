@@ -67,7 +67,7 @@ export default function ServicesCarousel() {
   return (
     <div className="relative">
       <div className="overflow-hidden" ref={emblaRef}>
-        <div className="flex gap-4">
+        <div className="flex gap-4 will-change-transform transition-transform duration-300 ease-out">
           {services.map((service, idx) => {
             const Icon = service.icon
             return (

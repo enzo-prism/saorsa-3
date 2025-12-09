@@ -76,8 +76,18 @@ export default function Home() {
       </section>
 
       {/* Value Proposition Section */}
-      <section className="py-16 md:py-24 px-4 bg-muted/30">
-        <div className="max-w-4xl mx-auto">
+      <section className="relative overflow-hidden py-16 md:py-24 px-4 bg-muted/30">
+        <div className="absolute inset-0 pointer-events-none">
+          <div
+            className="absolute -top-24 right-0 w-[320px] h-[320px] blur-[90px] animate-float-slow"
+            style={{ background: "radial-gradient(circle at 30% 30%, rgba(61,68,53,0.45), transparent 55%)" }}
+          />
+          <div
+            className="absolute bottom-0 left-0 w-[300px] h-[300px] blur-[90px] animate-float-slower"
+            style={{ background: "radial-gradient(circle at 60% 60%, rgba(214,186,162,0.45), transparent 55%)" }}
+          />
+        </div>
+        <div className="max-w-4xl mx-auto relative z-10">
           <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-12 text-balance">
             Why Partner With Saorsa?
           </h2>
