@@ -19,11 +19,12 @@ export default function HeroVideo() {
   return (
     <video
       ref={videoRef}
-      className="absolute inset-0 h-full w-full object-cover opacity-25 pointer-events-none"
+      className="absolute inset-0 h-full w-full object-cover opacity-25 pointer-events-none scale-110"
       autoPlay
       loop
       muted
       playsInline
+      style={{ transformOrigin: "center" }}
     >
       <source
         src="https://res.cloudinary.com/dhqpqfw6w/video/upload/v1765308164/Seed_to_Mighty_Tree_Video_j0zzgx.mp4"
