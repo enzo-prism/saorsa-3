@@ -12,7 +12,19 @@ const _geistMono = Geist_Mono({ subsets: ["latin"] })
 export const metadata: Metadata = {
   title: "Saorsa Growth Partners - Strategic Growth Solutions",
   description: "Partner with Saorsa Growth Partners for strategic growth acceleration and business transformation.",
-  generator: "v0.app",
+  icons: {
+    icon: "/icon.png",
+    apple: "/apple-icon.png",
+  },
+  openGraph: {
+    title: "Saorsa Growth Partners - Strategic Growth Solutions",
+    description: "Partner with Saorsa Growth Partners for strategic growth acceleration and business transformation.",
+    images: [{ url: "/og-image.png", width: 1280, height: 720 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["/og-image.png"],
+  },
 }
 
 export default function RootLayout({
