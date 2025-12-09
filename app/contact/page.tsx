@@ -107,6 +107,17 @@ export default function ContactPage() {
             </div>
           </div>
 
+          <div className="flex justify-center">
+            <a
+              href="https://www.linkedin.com/in/duncanbwalker"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-5 py-3 rounded-md border border-primary text-primary hover:bg-primary/5 transition-all duration-200 ease-out hover-lift text-sm font-medium"
+            >
+              Connect with Duncan on LinkedIn
+            </a>
+          </div>
+
           {/* Form Section */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             {/* Contact Form */}
