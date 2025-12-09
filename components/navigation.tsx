@@ -3,7 +3,7 @@
 import { useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { Home, Lightbulb, Users, PhoneCall, Menu, X } from "lucide-react"
+import { Home, Lightbulb, Users, PhoneCall, Menu, X, Compass } from "lucide-react"
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
@@ -18,6 +18,7 @@ export default function Navigation() {
       hoverClass: "text-primary drop-shadow-[0_0_10px_rgba(61,68,53,0.45)] fill-current",
     },
     { label: "Partners", href: "/partners", icon: Users },
+    { label: "Guiding Principles", href: "/guiding-principles", icon: Compass },
     { label: "Contact", href: "/contact", icon: PhoneCall },
   ]
 
