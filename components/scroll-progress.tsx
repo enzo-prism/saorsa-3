@@ -23,10 +23,10 @@ export default function ScrollProgress() {
 
   return (
     <div className="fixed inset-x-0 top-0 z-50 pointer-events-none">
-      <div className="h-1 bg-primary/15">
+      <div className="h-1 bg-primary/15 overflow-hidden">
         <div
-          className="h-1 bg-primary transition-[width] duration-100 ease-out"
-          style={{ width: `${progress}%` }}
+          className="h-1 bg-primary w-full origin-left will-change-transform transition-transform duration-200 ease-out"
+          style={{ transform: `scaleX(${progress / 100})` }}
           aria-hidden
         />
       </div>
