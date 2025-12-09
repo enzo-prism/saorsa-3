@@ -153,14 +153,12 @@ export default function Home() {
             >
               Start the Conversation
             </Link>
-            <a
-              href="https://conduitofvalue.substack.com/"
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href="/insights"
               className="px-8 py-3 border-2 border-primary-foreground text-primary-foreground rounded-lg font-medium transition-all duration-200 ease-out hover-lift hover:bg-primary-foreground/10"
             >
               Explore Our Insights
-            </a>
+            </Link>
           </div>
         </div>
       </section>
