@@ -4,7 +4,7 @@ export default function NewsletterSignup() {
   return (
     <section className="py-10 px-4 bg-background">
       <div className="max-w-2xl mx-auto">
-        <div className="bg-card/70 backdrop-blur-sm border border-border/70 rounded-xl p-6 md:p-7 shadow-sm">
+        <div className="bg-card/70 backdrop-blur-sm border border-border/70 rounded-xl p-6 md:p-7 shadow-sm hover-lift">
           <h2 className="text-xl md:text-2xl font-semibold text-foreground mb-3">Subscribe to The Conduit of Value</h2>
           <p className="text-foreground/70 mb-5">
             Get weekly insights on growth, strategy, and business transformation directly to your inbox.

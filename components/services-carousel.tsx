@@ -76,7 +76,7 @@ export default function ServicesCarousel() {
                 className="flex-shrink-0 basis-[88%] sm:basis-[60%] lg:basis-1/3"
                 aria-label={service.title}
               >
-                <div className="h-full p-6 bg-card rounded-lg border border-border hover:border-primary/50 transition-colors shadow-sm flex flex-col gap-3">
+                <div className="h-full p-6 bg-card rounded-lg border border-border hover:border-primary/50 transition-colors hover-lift flex flex-col gap-3">
                   <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
                     <Icon size={24} className="text-primary" />
                   </div>

@@ -194,11 +194,11 @@ export default function ContactPage() {
                 <div>
                   <h2 className="text-2xl font-bold text-foreground mb-6">Quick Links</h2>
                   <div className="space-y-4">
-                    <a
-                      href="https://calendly.com"
-                      target="_blank"
+                  <a
+                    href="https://calendly.com"
+                    target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-start gap-4 p-4 bg-muted/50 rounded-lg hover:bg-muted/80 transition-colors group"
+                    className="flex items-start gap-4 p-4 bg-muted/50 rounded-lg hover:bg-muted/80 transition-colors hover-lift group"
                   >
                     <Calendar size={24} className="text-primary flex-shrink-0 mt-1 transition-colors group-hover:text-foreground" />
                     <div>
@@ -211,10 +211,7 @@ export default function ContactPage() {
                     </div>
                   </a>
 
-                  <a
-                    href="/insights"
-                    className="flex items-start gap-4 p-4 bg-muted/50 rounded-lg hover:bg-muted/80 transition-colors group"
-                  >
+                  <a href="/insights" className="flex items-start gap-4 p-4 bg-muted/50 rounded-lg hover:bg-muted/80 transition-colors hover-lift group">
                     <Lightbulb
                       size={24}
                       className="text-primary flex-shrink-0 mt-1 transition-colors group-hover:text-foreground"

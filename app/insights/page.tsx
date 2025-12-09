@@ -61,7 +61,7 @@ export default async function InsightsPage() {
               {posts.map((post, idx) => (
                 <Reveal key={post.slug} delay={0.05 * idx} className="h-full">
                   <Link href={`/insights/${post.slug}`} className="group cursor-pointer h-full flex flex-col">
-                    <div className="bg-card rounded-lg border border-border overflow-hidden hover:border-accent/50 transition-all hover:shadow-lg h-full flex flex-col">
+                    <div className="bg-card rounded-lg border border-border overflow-hidden hover:border-accent/50 transition-all hover-lift h-full flex flex-col">
                       {post.imageUrl && (
                         <div className="relative h-40 md:h-48 overflow-hidden bg-muted">
                           <img

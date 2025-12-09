@@ -67,7 +67,7 @@ export default function Footer() {
                   href="https://conduitofvalue.substack.com/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 py-1.5 hover:text-accent transition-colors"
+                  className="inline-flex items-center gap-2 py-1.5 hover:text-accent transition-colors hover-underline"
                 >
                   <Link2 size={14} />
                   Conduit of Value
@@ -76,7 +76,7 @@ export default function Footer() {
               <li>
                 <a
                   href="mailto:hello@saorsagrowth.com"
-                  className="inline-flex items-center gap-2 py-1.5 hover:text-accent transition-colors"
+                  className="inline-flex items-center gap-2 py-1.5 hover:text-accent transition-colors hover-underline"
                 >
                   <Mail size={14} />
                   Email
@@ -94,7 +94,7 @@ export default function Footer() {
                   href="https://linkedin.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 py-1.5 hover:text-accent transition-colors"
+                  className="inline-flex items-center gap-2 py-1.5 hover:text-accent transition-colors hover-underline"
                 >
                   <Linkedin size={14} />
                   LinkedIn

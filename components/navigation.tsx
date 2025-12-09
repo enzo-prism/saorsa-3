@@ -26,14 +26,14 @@ export default function Navigation() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-3">
+          <Link href="/" className="group flex items-center space-x-3">
             <Image
               src="/saorsa-logo.webp"
               alt="Saorsa Growth Partners logo"
               width={36}
               height={36}
               priority
-              className="h-9 w-9 object-contain"
+              className="h-9 w-9 object-contain transition-transform duration-200 group-hover:scale-110 group-hover:drop-shadow-sm"
             />
           </Link>
 
@@ -46,7 +46,7 @@ export default function Navigation() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="group text-sm font-medium text-foreground/70 hover:text-primary transition-colors inline-flex items-center gap-2"
+                  className="group text-sm font-medium text-foreground/70 hover:text-primary transition-colors inline-flex items-center gap-2 hover-underline"
                 >
                   <span className="relative h-4 w-4 flex items-center justify-center">
                     <Icon
@@ -68,7 +68,7 @@ export default function Navigation() {
             })}
             <Link
               href="/contact"
-              className="px-4 py-2 bg-primary text-primary-foreground rounded-md hover:opacity-90 transition-opacity text-sm font-medium"
+              className="px-4 py-2 bg-primary text-primary-foreground rounded-md hover:opacity-90 transition-opacity hover-lift text-sm font-medium"
             >
               Get Started
             </Link>
