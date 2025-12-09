@@ -3,7 +3,7 @@
 import type React from "react"
 
 import { useState } from "react"
-import { Mail, Phone, Calendar, Lightbulb, ChevronDown } from "lucide-react"
+import { Mail, Phone, Calendar, Lightbulb, ChevronDown, Linkedin } from "lucide-react"
 import Reveal from "@/components/reveal"
 
 export default function ContactPage() {
@@ -61,65 +61,70 @@ export default function ContactPage() {
       </section>
 
       {/* Contact Section */}
-      <section className="py-16 md:py-24 px-4 bg-background">
-        <div className="max-w-5xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+      <section className="py-14 md:py-20 px-4 bg-background">
+        <div className="max-w-5xl mx-auto space-y-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-6">
             {/* Email */}
-            <div className="text-center md:text-left">
-              <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto md:mx-0 mb-4">
-                <Mail size={24} className="text-primary" />
+            <div className="text-center md:text-left bg-card border border-border rounded-xl p-5 md:p-6 hover-lift transition-shadow space-y-3">
+              <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto md:mx-0">
+                <Mail size={22} className="text-primary" />
               </div>
-              <h3 className="text-lg font-semibold text-foreground mb-2">Email</h3>
+              <h3 className="text-lg font-semibold text-foreground">Email</h3>
               <a
                 href="mailto:Duncan@saorsapartners.com"
-                className="inline-flex items-center justify-center px-4 py-2 rounded-md border border-primary text-primary bg-primary/5 hover:bg-primary/10 hover:border-primary/80 transition-all duration-200 ease-out hover-lift text-sm font-medium"
+                className="inline-flex items-center justify-center px-4 py-2.5 rounded-full border border-primary/70 text-primary bg-primary/5 hover:bg-primary/10 transition-all duration-200 ease-out hover-lift text-sm font-medium"
               >
                 Duncan@saorsapartners.com
               </a>
             </div>
 
             {/* Calendar */}
-            <div className="text-center md:text-left">
-              <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto md:mx-0 mb-4">
-                <Calendar size={24} className="text-primary" />
+            <div className="text-center md:text-left bg-card border border-border rounded-xl p-5 md:p-6 hover-lift transition-shadow space-y-3">
+              <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto md:mx-0">
+                <Calendar size={22} className="text-primary" />
               </div>
-              <h3 className="text-lg font-semibold text-foreground mb-2">Schedule Call</h3>
+              <h3 className="text-lg font-semibold text-foreground">Schedule Call</h3>
               <a
                 href="#"
-                className="inline-flex items-center justify-center px-4 py-2 rounded-md border border-primary text-primary bg-primary/5 hover:bg-primary/10 hover:border-primary/80 transition-all duration-200 ease-out hover-lift text-sm font-medium"
+                className="inline-flex items-center justify-center px-4 py-2.5 rounded-full border border-primary/70 text-primary bg-primary/5 hover:bg-primary/10 transition-all duration-200 ease-out hover-lift text-sm font-medium"
               >
                 Book a 30-min consultation
               </a>
             </div>
 
             {/* Phone */}
-            <div className="text-center md:text-left">
-              <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto md:mx-0 mb-4">
-                <Phone size={24} className="text-primary" />
+            <div className="text-center md:text-left bg-card border border-border rounded-xl p-5 md:p-6 hover-lift transition-shadow space-y-3">
+              <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto md:mx-0">
+                <Phone size={22} className="text-primary" />
               </div>
-              <h3 className="text-lg font-semibold text-foreground mb-2">Phone</h3>
+              <h3 className="text-lg font-semibold text-foreground">Phone</h3>
               <a
                 href="tel:+19257840718"
-                className="inline-flex items-center justify-center px-4 py-2 rounded-md border border-primary text-primary bg-primary/5 hover:bg-primary/10 hover:border-primary/80 transition-all duration-200 ease-out hover-lift text-sm font-medium"
+                className="inline-flex items-center justify-center px-4 py-2.5 rounded-full border border-primary/70 text-primary bg-primary/5 hover:bg-primary/10 transition-all duration-200 ease-out hover-lift text-sm font-medium"
               >
                 (925) 784-0718
               </a>
             </div>
-          </div>
 
-          <div className="flex justify-center">
-            <a
-              href="https://www.linkedin.com/in/duncanbwalker"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-5 py-3 rounded-md border border-primary text-primary hover:bg-primary/5 transition-all duration-200 ease-out hover-lift text-sm font-medium"
-            >
-              Connect with Duncan on LinkedIn
-            </a>
+            {/* LinkedIn */}
+            <div className="text-center md:text-left bg-card border border-border rounded-xl p-5 md:p-6 hover-lift transition-shadow space-y-3">
+              <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto md:mx-0">
+                <Linkedin size={22} className="text-primary" />
+              </div>
+              <h3 className="text-lg font-semibold text-foreground">LinkedIn</h3>
+              <a
+                href="https://www.linkedin.com/in/duncanbwalker"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center px-4 py-2.5 rounded-full border border-primary/70 text-primary bg-primary/5 hover:bg-primary/10 transition-all duration-200 ease-out hover-lift text-sm font-medium"
+              >
+                Connect with Duncan
+              </a>
+            </div>
           </div>
 
           {/* Form Section */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
             {/* Contact Form */}
             <div>
               <h2 className="text-2xl font-bold text-foreground mb-8">Send us a message</h2>
