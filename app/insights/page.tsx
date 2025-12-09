@@ -2,6 +2,7 @@ import Link from "next/link"
 import { ArrowRight, ExternalLink, ChevronRight } from "lucide-react"
 import { getSubstackPosts, formatDate } from "@/lib/substack"
 import NewsletterSignup from "@/components/newsletter-signup"
+import Reveal from "@/components/reveal"
 
 export const revalidate = 3600 // Revalidate every hour
 
@@ -32,7 +33,7 @@ export default async function InsightsPage() {
       </div>
       {/* Hero */}
       <section className="py-12 md:py-20 px-4 bg-gradient-to-br from-secondary/20 via-background to-background">
-        <div className="max-w-4xl mx-auto text-center">
+        <Reveal className="max-w-4xl mx-auto text-center">
           <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6 text-balance">
             Growth Insights & Perspectives
           </h1>
@@ -40,7 +41,7 @@ export default async function InsightsPage() {
             Explore our latest thinking on business strategy, growth acceleration, and value creation. Subscribe to The
             Conduit of Value for weekly insights.
           </p>
-        </div>
+        </Reveal>
       </section>
 
       {/* Newsletter Signup */}
@@ -57,41 +58,43 @@ export default async function InsightsPage() {
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {posts.map((post) => (
-                <Link key={post.slug} href={`/insights/${post.slug}`} className="group cursor-pointer">
-                  <div className="bg-card rounded-lg border border-border overflow-hidden hover:border-accent/50 transition-all hover:shadow-lg h-full flex flex-col">
-                    {post.imageUrl && (
-                      <div className="relative h-40 md:h-48 overflow-hidden bg-muted">
-                        <img
-                          src={post.imageUrl}
-                          alt={post.title}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                        />
-                      </div>
-                    )}
-                    {!post.imageUrl && (
-                      <div className="relative h-40 md:h-48 overflow-hidden bg-gradient-to-br from-primary/10 to-accent/10 flex items-center justify-center">
-                        <span className="text-6xl font-bold text-primary/20">S</span>
-                      </div>
-                    )}
-                    <div className="p-6 flex flex-col flex-grow">
-                      <div className="flex items-center gap-2 mb-3">
-                        <span className="px-3 py-1 bg-accent/20 text-accent-foreground text-xs font-semibold rounded-full">
-                          Article
-                        </span>
-                        <span className="text-xs text-foreground/50">{formatDate(post.pubDate)}</span>
-                      </div>
-                      <h3 className="text-lg font-semibold text-foreground mb-3 group-hover:text-primary transition-colors line-clamp-2">
-                        {post.title}
-                      </h3>
-                      <p className="text-foreground/70 text-sm mb-4 flex-grow line-clamp-3">{post.description}</p>
-                      <div className="flex items-center gap-2 text-primary font-medium text-sm">
-                        Read Article
-                        <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+              {posts.map((post, idx) => (
+                <Reveal key={post.slug} delay={0.05 * idx} className="h-full">
+                  <Link href={`/insights/${post.slug}`} className="group cursor-pointer h-full flex flex-col">
+                    <div className="bg-card rounded-lg border border-border overflow-hidden hover:border-accent/50 transition-all hover:shadow-lg h-full flex flex-col">
+                      {post.imageUrl && (
+                        <div className="relative h-40 md:h-48 overflow-hidden bg-muted">
+                          <img
+                            src={post.imageUrl}
+                            alt={post.title}
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                          />
+                        </div>
+                      )}
+                      {!post.imageUrl && (
+                        <div className="relative h-40 md:h-48 overflow-hidden bg-gradient-to-br from-primary/10 to-accent/10 flex items-center justify-center">
+                          <span className="text-6xl font-bold text-primary/20">S</span>
+                        </div>
+                      )}
+                      <div className="p-6 flex flex-col flex-grow">
+                        <div className="flex items-center gap-2 mb-3">
+                          <span className="px-3 py-1 bg-accent/20 text-accent-foreground text-xs font-semibold rounded-full">
+                            Article
+                          </span>
+                          <span className="text-xs text-foreground/50">{formatDate(post.pubDate)}</span>
+                        </div>
+                        <h3 className="text-lg font-semibold text-foreground mb-3 group-hover:text-primary transition-colors line-clamp-2">
+                          {post.title}
+                        </h3>
+                        <p className="text-foreground/70 text-sm mb-4 flex-grow line-clamp-3">{post.description}</p>
+                        <div className="flex items-center gap-2 text-primary font-medium text-sm">
+                          Read Article
+                          <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </Link>
+                  </Link>
+                </Reveal>
               ))}
             </div>
           )}

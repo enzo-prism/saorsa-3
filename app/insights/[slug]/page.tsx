@@ -5,6 +5,7 @@ import { getSubstackPost, getSubstackPosts, formatDate } from "@/lib/substack"
 import ArticleContent from "@/components/article-content"
 import NewsletterSignup from "@/components/newsletter-signup"
 import ShareActions from "@/components/share-actions"
+import Reveal from "@/components/reveal"
 import type { Metadata } from "next"
 
 export const revalidate = 3600 // Revalidate every hour
@@ -84,7 +85,7 @@ export default async function ArticlePage({ params }: PageProps) {
       </div>
       {/* Article Header */}
       <section className="py-12 md:py-16 px-4 bg-gradient-to-br from-secondary/20 via-background to-background">
-        <div className="max-w-3xl mx-auto">
+        <Reveal className="max-w-3xl mx-auto">
           {/* Back Link */}
           <Link
             href="/insights"
@@ -124,7 +125,7 @@ export default async function ArticlePage({ params }: PageProps) {
             {/* Share */}
             <ShareActions title={post.title} fallbackUrl={post.link} />
           </div>
-        </div>
+        </Reveal>
       </section>
 
       {/* Featured Image */}

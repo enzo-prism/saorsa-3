@@ -3,7 +3,8 @@
 import type React from "react"
 
 import { useState } from "react"
-import { Mail, Phone, Calendar, Lightbulb } from "lucide-react"
+import { Mail, Phone, Calendar, Lightbulb, ChevronDown } from "lucide-react"
+import Reveal from "@/components/reveal"
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -189,12 +190,13 @@ export default function ContactPage() {
 
             {/* Info Section */}
             <div className="space-y-12">
-              <div>
-                <h2 className="text-2xl font-bold text-foreground mb-6">Quick Links</h2>
-                <div className="space-y-4">
-                  <a
-                    href="https://calendly.com"
-                    target="_blank"
+              <Reveal>
+                <div>
+                  <h2 className="text-2xl font-bold text-foreground mb-6">Quick Links</h2>
+                  <div className="space-y-4">
+                    <a
+                      href="https://calendly.com"
+                      target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-start gap-4 p-4 bg-muted/50 rounded-lg hover:bg-muted/80 transition-colors group"
                   >
@@ -227,29 +229,32 @@ export default function ContactPage() {
                     </div>
                   </a>
                 </div>
-              </div>
+                </div>
+              </Reveal>
 
-              <div className="bg-primary/5 border border-primary/20 rounded-lg p-8">
-                <h3 className="font-bold text-foreground mb-4">What to Expect</h3>
-                <ol className="space-y-3 text-sm text-foreground/70">
-                  <li className="flex gap-3">
-                    <span className="font-semibold text-primary flex-shrink-0">1.</span>
-                    <span>Discovery conversation to decide if we should pursue a partnership trial together</span>
-                  </li>
-                  <li className="flex gap-3">
-                    <span className="font-semibold text-primary flex-shrink-0">2.</span>
-                    <span>Deep due diligence and strategic assessment of your opportunity</span>
-                  </li>
-                  <li className="flex gap-3">
-                    <span className="font-semibold text-primary flex-shrink-0">3.</span>
-                    <span>Proposal structured as a partnership trial with clear success metrics and retainer alignment</span>
-                  </li>
-                  <li className="flex gap-3">
-                    <span className="font-semibold text-primary flex-shrink-0">4.</span>
-                    <span>Results-focused engagement tied to measurable outcomes and long-term fit</span>
-                  </li>
-                </ol>
-              </div>
+              <Reveal delay={0.1}>
+                <div className="bg-primary/5 border border-primary/20 rounded-lg p-8">
+                  <h3 className="font-bold text-foreground mb-4">What to Expect</h3>
+                  <ol className="space-y-3 text-sm text-foreground/70">
+                    <li className="flex gap-3">
+                      <span className="font-semibold text-primary flex-shrink-0">1.</span>
+                      <span>Discovery conversation to decide if we should pursue a partnership trial together</span>
+                    </li>
+                    <li className="flex gap-3">
+                      <span className="font-semibold text-primary flex-shrink-0">2.</span>
+                      <span>Deep due diligence and strategic assessment of your opportunity</span>
+                    </li>
+                    <li className="flex gap-3">
+                      <span className="font-semibold text-primary flex-shrink-0">3.</span>
+                      <span>Proposal structured as a partnership trial with clear success metrics and retainer alignment</span>
+                    </li>
+                    <li className="flex gap-3">
+                      <span className="font-semibold text-primary flex-shrink-0">4.</span>
+                      <span>Results-focused engagement tied to measurable outcomes and long-term fit</span>
+                    </li>
+                  </ol>
+                </div>
+              </Reveal>
             </div>
           </div>
         </div>
@@ -260,33 +265,69 @@ export default function ContactPage() {
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl font-bold text-foreground mb-12">Common Questions</h2>
 
-          <div className="space-y-6">
-            {[
-              {
-                q: "What types of companies do you partner with?",
-                a: "We partner with companies at critical inflection points—whether you're raising capital, building infrastructure for scale, navigating a turnaround, or preparing for a transaction. We apply the same due diligence to potential partnerships as we would to investments.",
-              },
-              {
-                q: "How is this different from traditional consulting?",
-                a: "We structure engagements as partnership trials, not consulting projects. We're building relationships, not billing hours. For long-term clients, we even syndicate investment through our network—putting our capital alongside yours.",
-              },
-              {
-                q: "What is your fee structure?",
-                a: "We use results-focused retainers tied to measurable outcomes, not time-based billing. As strategic advisors, we are not permitted to accept success fees—our fee schedule is structured strictly around advisory services.",
-              },
-              {
-                q: "How do you decide which engagements to pursue?",
-                a: "We apply investor-level due diligence before pursuing any partnership. If we don't believe in the opportunity or don't think we can add meaningful value, we'll tell you. We only partner where we see genuine potential for mutual success.",
-              },
-            ].map((item, idx) => (
-              <div key={idx} className="bg-card border border-border rounded-lg p-6">
-                <h3 className="font-semibold text-foreground mb-3">{item.q}</h3>
-                <p className="text-foreground/70 leading-relaxed">{item.a}</p>
-              </div>
-            ))}
-          </div>
+          <FAQSection />
         </div>
       </section>
     </main>
+  )
+}
+
+function FAQSection() {
+  const faqs = [
+    {
+      q: "What types of companies do you partner with?",
+      a: "We partner with companies at critical inflection points—whether you're raising capital, building infrastructure for scale, navigating a turnaround, or preparing for a transaction. We apply the same due diligence to potential partnerships as we would to investments.",
+    },
+    {
+      q: "How is this different from traditional consulting?",
+      a: "We structure engagements as partnership trials, not consulting projects. We're building relationships, not billing hours. For long-term clients, we even syndicate investment through our network—putting our capital alongside yours.",
+    },
+    {
+      q: "What is your fee structure?",
+      a: "We use results-focused retainers tied to measurable outcomes, not time-based billing. As strategic advisors, we are not permitted to accept success fees—our fee schedule is structured strictly around advisory services.",
+    },
+    {
+      q: "How do you decide which engagements to pursue?",
+      a: "We apply investor-level due diligence before pursuing any partnership. If we don't believe in the opportunity or don't think we can add meaningful value, we'll tell you. We only partner where we see genuine potential for mutual success.",
+    },
+  ]
+
+  return (
+          <div className="space-y-4">
+            {faqs.map((item, idx) => (
+              <Reveal key={item.q} delay={0.05 * idx}>
+                <FAQItem question={item.q} answer={item.a} defaultOpen={idx === 0} />
+              </Reveal>
+            ))}
+          </div>
+  )
+}
+
+function FAQItem({ question, answer, defaultOpen = false }: { question: string; answer: string; defaultOpen?: boolean }) {
+  const [open, setOpen] = useState(defaultOpen)
+
+  return (
+    <div className="border border-border bg-card rounded-lg overflow-hidden transition-shadow hover:shadow-md">
+      <button
+        type="button"
+        onClick={() => setOpen((o) => !o)}
+        className="w-full flex items-center justify-between text-left px-4 py-3 md:px-5 md:py-4 gap-3"
+      >
+        <span className="text-sm md:text-base font-semibold text-foreground">{question}</span>
+        <ChevronDown
+          size={18}
+          className={`text-foreground/70 transition-transform duration-200 ${open ? "rotate-180" : ""}`}
+        />
+      </button>
+      <div
+        className={`grid transition-all duration-200 ${
+          open ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+        }`}
+      >
+        <div className="overflow-hidden">
+          <p className="px-4 pb-4 md:px-5 md:pb-5 text-sm text-foreground/70 leading-relaxed">{answer}</p>
+        </div>
+      </div>
+    </div>
   )
 }

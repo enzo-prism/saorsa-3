@@ -2,6 +2,8 @@ import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 import ValueEquationChart from "@/components/value-equation-chart"
 import ServicesCarousel from "@/components/services-carousel"
+import Reveal from "@/components/reveal"
+import HeroVideo from "@/components/hero-video"
 
 export default function Home() {
   return (
@@ -9,12 +11,17 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative min-h-[calc(100vh-64px)] bg-gradient-to-br from-primary via-background to-background flex items-center justify-center px-4 py-12 md:py-0">
         <div className="absolute inset-0 overflow-hidden">
+          <HeroVideo />
+          <div className="absolute inset-0 bg-gradient-to-br from-background/85 via-background/75 to-background/60" />
           <div className="absolute -top-40 -right-40 w-80 h-80 bg-accent/10 rounded-full blur-3xl"></div>
           <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-secondary/10 rounded-full blur-3xl"></div>
         </div>
 
-        <div className="relative max-w-4xl mx-auto text-center z-10">
+        <Reveal className="relative max-w-4xl mx-auto text-center z-10">
           <div className="inline-block mb-6">
+            <div className="flex justify-center mb-3">
+              <img src="/saorsa-logo.webp" alt="Saorsa Growth Partners logo" className="h-10 w-10 object-contain" />
+            </div>
             <span className="px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium">
               Saorsa Growth Partners
             </span>
@@ -48,21 +55,23 @@ export default function Home() {
           </div>
 
           <p className="text-sm text-foreground/60">Beyond consulting. True partnership.</p>
-        </div>
+        </Reveal>
       </section>
 
       {/* Services Section - 5 Pillars */}
       <section className="py-16 md:py-24 px-4 bg-background">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-10 md:mb-12">
+          <Reveal className="text-center mb-10 md:mb-12">
             <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-4 text-balance">How We Help</h2>
             <p className="text-lg text-foreground/70 max-w-2xl mx-auto">
               Every business faces critical inflection points. We bring the investor mindset and operational expertise
               to help you navigate them.
             </p>
-          </div>
+          </Reveal>
 
-          <ServicesCarousel />
+          <Reveal>
+            <ServicesCarousel />
+          </Reveal>
         </div>
       </section>
 
@@ -100,7 +109,7 @@ export default function Home() {
                   "We run deep diligence before we engage. If we shouldn't pursue it together, we'll say so and tell you why.",
               },
             ].map((item, idx) => (
-              <div key={idx} className="flex gap-6">
+              <Reveal key={idx} delay={0.05 * idx} className="flex gap-6">
                 <div className="flex-shrink-0">
                   <div className="flex items-center justify-center h-12 w-12 rounded-lg bg-accent text-accent-foreground font-bold text-lg">
                     {item.number}
@@ -110,7 +119,7 @@ export default function Home() {
                   <h3 className="text-lg font-semibold text-foreground mb-2">{item.title}</h3>
                   <p className="text-foreground/70">{item.description}</p>
                 </div>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>

@@ -1,6 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
-import { Home, BookOpen, Mail, Link2, Linkedin, Twitter, MessageCircle, Users } from "lucide-react"
+import { Home, BookOpen, Mail, Link2, Linkedin, Users } from "lucide-react"
 
 export default function Footer() {
   const currentYear = new Date().getFullYear()
@@ -11,16 +11,18 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           {/* Brand */}
           <div className="md:col-span-1">
-            <div className="flex items-center space-x-2 mb-4">
-              <Image
-                src="/saorsa-logo.webp"
-                alt="Saorsa Growth Partners logo"
-                width={32}
-                height={32}
-                className="h-8 w-8 object-contain rounded-md bg-primary-foreground/10"
-                priority
-              />
-              <span className="font-bold text-lg">Saorsa</span>
+            <div className="flex items-center space-x-3 mb-4">
+              <div className="h-10 w-10 rounded-lg bg-primary-foreground border border-primary-foreground/40 shadow-sm flex items-center justify-center">
+                <Image
+                  src="/saorsa-logo.webp"
+                  alt="Saorsa Growth Partners logo"
+                  width={28}
+                  height={28}
+                  className="h-7 w-7 object-contain"
+                  priority
+                />
+              </div>
+              <span className="font-bold text-lg text-primary-foreground">Saorsa Growth Partners</span>
             </div>
             <p className="text-sm text-primary-foreground/70">Your embedded financial and operational partners.</p>
           </div>
@@ -72,15 +74,6 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <Link
-                  href="/contact"
-                  className="inline-flex items-center gap-2 py-1.5 hover:text-accent transition-colors"
-                >
-                  <Mail size={14} />
-                  Contact
-                </Link>
-              </li>
-              <li>
                 <a
                   href="mailto:hello@saorsagrowth.com"
                   className="inline-flex items-center gap-2 py-1.5 hover:text-accent transition-colors"
@@ -105,26 +98,6 @@ export default function Footer() {
                 >
                   <Linkedin size={14} />
                   LinkedIn
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://twitter.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 py-1.5 hover:text-accent transition-colors"
-                >
-                  <Twitter size={14} />
-                  Twitter
-                </a>
-              </li>
-              <li>
-                <a
-                  href="mailto:hello@saorsagrowth.com"
-                  className="inline-flex items-center gap-2 py-1.5 hover:text-accent transition-colors"
-                >
-                  <MessageCircle size={14} />
-                  Say Hello
                 </a>
               </li>
             </ul>

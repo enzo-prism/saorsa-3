@@ -1,6 +1,7 @@
 "use client"
 
 import { CheckCircle, Award, Zap } from "lucide-react"
+import Reveal from "@/components/reveal"
 
 export default function PartnersPage() {
   const benefits = [
@@ -25,13 +26,13 @@ export default function PartnersPage() {
     <main className="flex flex-col">
       {/* Hero */}
       <section className="py-12 md:py-20 px-4 bg-gradient-to-br from-accent/20 via-background to-background">
-        <div className="max-w-4xl mx-auto text-center">
+        <Reveal className="max-w-4xl mx-auto text-center">
           <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6 text-balance">Partnership Results</h1>
           <p className="text-lg md:text-xl text-foreground/70 max-w-2xl mx-auto leading-relaxed">
             Every engagement is a partnership trial. We embed as financial and operational partners to deliver measurable
             outcomes and prove conviction.
           </p>
-        </div>
+        </Reveal>
       </section>
 
       {/* Benefits Section */}
@@ -41,7 +42,7 @@ export default function PartnersPage() {
             {benefits.map((benefit, idx) => {
               const Icon = benefit.icon
               return (
-                <div key={idx} className="flex gap-4">
+                <Reveal key={idx} delay={0.05 * idx} className="flex gap-4">
                   <div className="flex-shrink-0">
                     <Icon size={32} className="text-primary" />
                   </div>
@@ -49,7 +50,7 @@ export default function PartnersPage() {
                     <h3 className="text-lg font-semibold text-foreground mb-2">{benefit.title}</h3>
                     <p className="text-foreground/70">{benefit.description}</p>
                   </div>
-                </div>
+                </Reveal>
               )
             })}
           </div>
