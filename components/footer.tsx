@@ -1,6 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
-import { Home, BookOpen, Mail, Newspaper, Linkedin, Users } from "lucide-react"
+import { Home, BookOpen, Mail, Newspaper, Linkedin, Users, PhoneCall } from "lucide-react"
 
 export default function Footer() {
   const currentYear = new Date().getFullYear()
@@ -81,6 +81,15 @@ export default function Footer() {
                   <Mail size={14} />
                   Email
                 </a>
+              </li>
+              <li>
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center gap-2 py-1.5 hover:text-accent transition-colors hover-underline"
+                >
+                  <PhoneCall size={14} />
+                  Contact
+                </Link>
               </li>
             </ul>
           </div>
