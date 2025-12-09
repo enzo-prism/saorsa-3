@@ -45,7 +45,7 @@ const services = [
 export default function ServicesCarousel() {
   const [emblaRef, emblaApi] = useEmblaCarousel({
     align: "start",
-    loop: true,
+    loop: false,
     dragFree: false,
   })
   const [canPrev, setCanPrev] = useState(false)
