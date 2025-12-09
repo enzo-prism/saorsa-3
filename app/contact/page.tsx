@@ -84,10 +84,12 @@ export default function ContactPage() {
                 <Calendar size={24} className="text-primary" />
               </div>
               <h3 className="text-lg font-semibold text-foreground mb-2">Schedule Call</h3>
-              <a href="#" className="text-foreground/70 hover:text-accent transition-colors">
+              <a
+                href="#"
+                className="inline-flex items-center justify-center px-4 py-2 rounded-md border border-primary text-primary bg-primary/5 hover:bg-primary/10 hover:border-primary/80 transition-all duration-200 ease-out hover-lift text-sm font-medium"
+              >
                 Book a 30-min consultation
               </a>
-              <p className="text-sm text-foreground/60 mt-1">(Calendar link to be added)</p>
             </div>
 
             {/* Phone */}
