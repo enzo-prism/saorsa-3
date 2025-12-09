@@ -114,9 +114,9 @@ export default function ContactPage() {
               <h2 className="text-2xl font-bold text-foreground mb-8">Send us a message</h2>
 
               {submitted ? (
-                <div className="bg-accent/10 border border-accent text-accent rounded-lg p-6 text-center">
-                  <p className="font-semibold">Thank you for reaching out!</p>
-                  <p className="text-sm mt-2">We'll be in touch within 24 hours.</p>
+                <div className="bg-primary/10 border border-primary text-primary rounded-lg p-6 text-center">
+                  <p className="font-semibold">Message received</p>
+                  <p className="text-sm mt-2">Thanks for reaching out. We’ll respond within 24 hours.</p>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-5">
