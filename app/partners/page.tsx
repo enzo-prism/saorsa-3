@@ -13,7 +13,7 @@ export default function PartnersPage() {
         "Expanded market presence across 3 new verticals",
         "42% improvement in customer acquisition efficiency",
       ],
-      testimonial: "Saorsa didn't just advise—they rolled up their sleeves and became part of our team.",
+      testimonial: "Saorsa didn't just advise—they embedded as true partners and became part of our team.",
       executive: "Sarah Chen, CEO",
     },
     {
@@ -25,7 +25,7 @@ export default function PartnersPage() {
         "Scaled team from 8 to 35 people strategically",
         "Revenue growth of 180% year-over-year",
       ],
-      testimonial: "Their strategic framework transformed how we think about scaling.",
+      testimonial: "Their partnership model transformed how we think about scaling—they're invested in our success.",
       executive: "Marcus Johnson, President",
     },
     {
@@ -37,7 +37,7 @@ export default function PartnersPage() {
         "Secured $15M Series B investment",
         "Built sustainable go-to-market machine",
       ],
-      testimonial: "Saorsa helped us build the narrative and business foundation investors wanted to see.",
+      testimonial: "Saorsa brought investor-level rigor to our preparation—they helped us see our business through an investor's eyes.",
       executive: "Alex Rivera, Founder",
     },
     {
@@ -49,7 +49,7 @@ export default function PartnersPage() {
         "Reduced operational costs by 28%",
         "Launched 2 new product lines",
       ],
-      testimonial: "They made our transformation from legacy to growth leader feel achievable.",
+      testimonial: "They embedded with our team and made our transformation feel achievable—true partners in every sense.",
       executive: "Catherine Brown, COO",
     },
   ]
@@ -57,18 +57,18 @@ export default function PartnersPage() {
   const benefits = [
     {
       icon: CheckCircle,
-      title: "Proven Results",
-      description: "Track record of delivering measurable growth across diverse industries and business stages.",
+      title: "Results-Focused Model",
+      description: "We structure engagements around measurable outcomes, not hours billed. Your success is our success.",
     },
     {
       icon: Award,
-      title: "Strategic Expertise",
-      description: "Deep domain knowledge combined with proven frameworks for accelerating growth.",
+      title: "Investor-Level Rigor",
+      description: "We apply the same due diligence to our partnerships that we would to investments, ensuring mutual fit.",
     },
     {
       icon: Zap,
-      title: "Hands-On Partnership",
-      description: "Work directly with your team, not as detached advisors but as invested strategic partners.",
+      title: "Embedded Operations",
+      description: "We become your dedicated financial and operational partners, not detached consultants.",
     },
   ]
 
@@ -77,9 +77,10 @@ export default function PartnersPage() {
       {/* Hero */}
       <section className="py-12 md:py-20 px-4 bg-gradient-to-br from-accent/20 via-background to-background">
         <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6 text-balance">Success Stories</h1>
+          <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6 text-balance">Partnership Results</h1>
           <p className="text-lg md:text-xl text-foreground/70 max-w-2xl mx-auto leading-relaxed">
-            See how we've helped ambitious companies unlock growth and transform their businesses.
+            Every project is a trial run for a lasting alliance. See how our embedded partnerships deliver measurable
+            outcomes.
           </p>
         </div>
       </section>
@@ -157,15 +158,15 @@ export default function PartnersPage() {
       {/* CTA */}
       <section className="py-16 md:py-24 px-4 bg-primary text-primary-foreground">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-balance">Your Growth Story Starts Here</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-balance">Your Partnership Story Starts Here</h2>
           <p className="text-lg text-primary-foreground/80 mb-8 max-w-2xl mx-auto">
-            Ready to join our portfolio of successful partners and unlock your growth potential?
+            We're selective about the partnerships we pursue. Let's explore whether we're the right fit for each other.
           </p>
           <a
             href="/contact"
             className="inline-block px-8 py-3 bg-accent text-accent-foreground rounded-lg hover:opacity-90 transition-opacity font-medium"
           >
-            Schedule Your Consultation
+            Start the Conversation
           </a>
         </div>
       </section>

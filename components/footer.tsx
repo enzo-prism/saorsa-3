@@ -15,7 +15,7 @@ export default function Footer() {
               </div>
               <span className="font-bold text-lg">Saorsa</span>
             </div>
-            <p className="text-sm text-primary-foreground/70">Strategic growth acceleration for ambitious companies.</p>
+            <p className="text-sm text-primary-foreground/70">Your embedded financial and operational partners.</p>
           </div>
 
           {/* Quick Links */}
@@ -98,6 +98,15 @@ export default function Footer() {
               </li>
             </ul>
           </div>
+        </div>
+
+        {/* Legal Disclosure */}
+        <div className="border-t border-primary-foreground/20 pt-8 mb-8">
+          <p className="text-xs text-primary-foreground/60 max-w-3xl">
+            We provide strategic advisory and execution support. We are not a regulated financial intermediary or
+            licensed broker. We structure our fee schedule strictly around advisory services and are not permitted to
+            accept success fees.
+          </p>
         </div>
 
         {/* Bottom */}

@@ -50,11 +50,11 @@ export default function ContactPage() {
       <section className="py-12 md:py-16 px-4 bg-gradient-to-br from-primary/10 via-background to-background">
         <div className="max-w-4xl mx-auto text-center">
           <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6 text-balance">
-            Let's Start Your Growth Journey
+            Let's Discuss Your Partnership
           </h1>
           <p className="text-lg md:text-xl text-foreground/70 max-w-2xl mx-auto leading-relaxed">
-            Contact Saorsa Growth Partners to discuss how we can help accelerate your business growth and unlock new
-            opportunities.
+            We approach every conversation with the same rigor we bring to our engagements. Let's explore whether we're
+            the right partners for your journey.
           </p>
         </div>
       </section>
@@ -231,19 +231,19 @@ export default function ContactPage() {
                 <ol className="space-y-3 text-sm text-foreground/70">
                   <li className="flex gap-3">
                     <span className="font-semibold text-primary flex-shrink-0">1.</span>
-                    <span>Initial consultation to understand your business and goals</span>
+                    <span>Discovery conversation to understand if we should pursue this together</span>
                   </li>
                   <li className="flex gap-3">
                     <span className="font-semibold text-primary flex-shrink-0">2.</span>
-                    <span>Strategic assessment of growth opportunities and challenges</span>
+                    <span>Deep due diligence and strategic assessment of your opportunity</span>
                   </li>
                   <li className="flex gap-3">
                     <span className="font-semibold text-primary flex-shrink-0">3.</span>
-                    <span>Custom proposal outlining our approach and partnership terms</span>
+                    <span>Proposal structured as a partnership trial with clear success metrics</span>
                   </li>
                   <li className="flex gap-3">
                     <span className="font-semibold text-primary flex-shrink-0">4.</span>
-                    <span>Ongoing partnership with regular check-ins and impact metrics</span>
+                    <span>Results-focused engagement tied to measurable business outcomes</span>
                   </li>
                 </ol>
               </div>
@@ -260,20 +260,20 @@ export default function ContactPage() {
           <div className="space-y-6">
             {[
               {
-                q: "What types of companies do you work with?",
-                a: "We work with ambitious companies across industries at all growth stages—from pre-Series A startups to established enterprises looking to accelerate transformation.",
+                q: "What types of companies do you partner with?",
+                a: "We partner with companies at critical inflection points—whether you're raising capital, building infrastructure for scale, navigating a turnaround, or preparing for a transaction. We apply the same due diligence to potential partnerships as we would to investments.",
               },
               {
-                q: "How long is a typical engagement?",
-                a: "Most engagements range from 6-24 months depending on scope and goals. We customize the partnership to match your specific needs and timeline.",
+                q: "How is this different from traditional consulting?",
+                a: "We structure engagements as partnership trials, not consulting projects. We're building relationships, not billing hours. For long-term clients, we even syndicate investment through our network—putting our capital alongside yours.",
               },
               {
-                q: "What is your engagement model?",
-                a: "We work as strategic partners embedded with your team, combining advisory guidance with hands-on execution support to drive measurable results.",
+                q: "What is your fee structure?",
+                a: "We use results-focused retainers tied to measurable outcomes, not time-based billing. As strategic advisors, we are not permitted to accept success fees—our fee schedule is structured strictly around advisory services.",
               },
               {
-                q: "How do you measure success?",
-                a: "Every engagement includes clear KPIs and metrics aligned with your business goals. We track progress regularly and adjust strategy as needed.",
+                q: "How do you decide which engagements to pursue?",
+                a: "We apply investor-level due diligence before pursuing any partnership. If we don't believe in the opportunity or don't think we can add meaningful value, we'll tell you. We only partner where we see genuine potential for mutual success.",
               },
             ].map((item, idx) => (
               <div key={idx} className="bg-card border border-border rounded-lg p-6">
