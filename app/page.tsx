@@ -114,9 +114,9 @@ export default function Home() {
               },
               {
                 number: "04",
-                title: "Investor Mindset",
+                title: "Trusted Advisory Partner",
                 description:
-                  "We run deep diligence before we engage. If we shouldn't pursue it together, we'll say so and tell you why.",
+                  "We approach every engagement with care, honesty, and accountability. Our role is to help you make the right decisions, even when the answer is not the easy one.",
               },
             ].map((item, idx) => (
               <Reveal key={idx} delay={0.05 * idx} className="flex gap-6">
