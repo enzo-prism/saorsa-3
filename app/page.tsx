@@ -35,8 +35,8 @@ export default function Home() {
           </h1>
 
           <p className="text-xl md:text-2xl text-foreground/70 text-balance mb-8 max-w-2xl mx-auto leading-relaxed">
-            We go beyond consulting. We embed with investor-level rigor to answer the hard questions, structure
-            partnership trials, and drive measurable value—shoulder to shoulder with you.
+            We go beyond consulting. We embed with investor-level rigor to answer hard questions, structure partnership
+            trials, and drive measurable value while working shoulder to shoulder with you.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
