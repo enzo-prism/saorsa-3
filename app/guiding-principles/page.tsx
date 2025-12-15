@@ -27,15 +27,6 @@ export default function GuidingPrinciplesPage() {
           <div className="absolute bottom-0 right-0 h-48 w-48 rounded-full bg-accent/15 blur-3xl" />
         </div>
         <div className="max-w-5xl mx-auto relative z-10 space-y-5 md:space-y-6">
-          <Reveal>
-            <div className="overflow-hidden rounded-2xl border border-border shadow-sm bg-card/70">
-              <img
-                src="https://res.cloudinary.com/dhqpqfw6w/image/upload/v1765310336/Screenshot_2025-12-09_at_11.58.15_AM_yaaiua.webp"
-                alt="Saorsa guiding principles visual"
-                className="w-full h-auto object-cover"
-              />
-            </div>
-          </Reveal>
           <Reveal className="text-center space-y-3 md:space-y-4">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-primary/30 bg-primary/5 text-primary text-xs font-semibold uppercase tracking-[0.08em]">
               The Saorsa Way
