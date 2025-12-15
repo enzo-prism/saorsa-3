@@ -110,7 +110,7 @@ export default function Home() {
                 number: "03",
                 title: "The Ultimate Investment",
                 description:
-                  "With long-term partners (12+ months), we syndicate capital from our network—putting our capital alongside yours.",
+                  "With long-term partners (12+ months), we syndicate capital from our network and put our capital alongside yours.",
               },
               {
                 number: "04",
