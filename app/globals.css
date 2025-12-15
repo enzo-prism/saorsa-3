@@ -159,6 +159,13 @@
   }
 }
 
+@layer utilities {
+  .prose blockquote p:first-of-type::before,
+  .prose blockquote p:last-of-type::after {
+    content: none;
+  }
+}
+
 /* Hover/transition helpers */
 .hover-lift {
   transition: transform var(--t-med) var(--ease-out), box-shadow var(--t-med) var(--ease-out),
