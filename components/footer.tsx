@@ -109,7 +109,7 @@ export default function Footer() {
             <ul className="space-y-1 text-sm">
               <li>
                 <a
-                  href="https://linkedin.com"
+                  href="https://www.linkedin.com/in/duncanmayoung/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 py-1.5 hover:text-accent transition-colors hover-underline"

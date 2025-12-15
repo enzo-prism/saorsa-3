@@ -127,7 +127,7 @@ export default function ContactPage() {
               </div>
               <h3 className="text-lg font-semibold text-foreground">LinkedIn</h3>
               <a
-                href="https://www.linkedin.com/in/duncanbwalker"
+                href="https://www.linkedin.com/in/duncanmayoung/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center px-4 py-2.5 rounded-full border border-primary/70 text-primary bg-primary/5 hover:bg-primary/10 transition-all duration-200 ease-out hover-lift text-sm font-medium"
