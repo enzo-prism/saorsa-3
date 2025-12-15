@@ -91,7 +91,7 @@ export default async function ArticlePage({ params }: PageProps) {
           {/* Back Link */}
           <Link
             href="/insights"
-            className="inline-flex items-center gap-2 text-foreground/60 hover:text-foreground mb-8 transition-colors"
+            className="inline-flex items-center gap-2 text-foreground/70 hover:text-foreground mb-8 transition-colors"
           >
             <ArrowLeft size={18} />
             Back to Insights
@@ -104,7 +104,7 @@ export default async function ArticlePage({ params }: PageProps) {
 
           <div className="flex flex-col gap-4 md:gap-3">
             {/* Meta */}
-            <div className="flex flex-wrap items-center gap-4 text-foreground/60 text-sm">
+            <div className="flex flex-wrap items-center gap-4 text-foreground/70 text-sm">
               <div className="flex items-center gap-2">
                 <User size={16} />
                 <span>{post.author}</span>

@@ -45,7 +45,7 @@ export default function ShareActions({ title, fallbackUrl = "" }: ShareActionsPr
 
   return (
     <div className="flex flex-wrap items-center gap-2">
-      <span className="inline-flex items-center gap-1 text-foreground/60 text-xs md:text-sm">
+      <span className="inline-flex items-center gap-1 text-foreground/70 text-xs md:text-sm">
         <Share2 size={14} />
         Share
       </span>

@@ -83,7 +83,7 @@ export default async function InsightsPage() {
                           <span className="px-3 py-1 bg-accent/20 text-accent-foreground text-xs font-semibold rounded-full">
                             Article
                           </span>
-                          <span className="text-xs text-foreground/50">{formatDate(post.pubDate)}</span>
+                          <span className="text-xs text-foreground/70">{formatDate(post.pubDate)}</span>
                         </div>
                         <h3 className="text-lg font-semibold text-foreground mb-3 group-hover:text-primary transition-colors line-clamp-2">
                           {post.title}
