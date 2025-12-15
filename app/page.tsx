@@ -98,7 +98,7 @@ export default function Home() {
                 number: "01",
                 title: "Projects Are Partnerships",
                 description:
-                  "Every engagement is a partnership trial. We invest early to prove conviction and fit—not to meter hours.",
+                  "Every engagement is a partnership trial. We invest early to prove conviction and fit, not to meter hours.",
               },
               {
                 number: "02",
