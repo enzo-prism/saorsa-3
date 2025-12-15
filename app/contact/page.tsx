@@ -7,42 +7,56 @@ import { Mail, Phone, Calendar, Lightbulb, ChevronDown, Linkedin } from "lucide-
 import Reveal from "@/components/reveal"
 
 export default function ContactPage() {
-  const [formData, setFormData] = useState({
+  const insightsSubscribeUrl = (email: string) => {
+    const params = new URLSearchParams({
+      email,
+      utm_source: "saorsa-site",
+      utm_medium: "contact-form",
+      utm_campaign: "insights-updates",
+    })
+    return `https://conduitofvalue.substack.com/subscribe?${params.toString()}`
+  }
+
+  const initialFormData = {
     firstName: "",
     lastName: "",
     email: "",
     company: "",
     phone: "",
     message: "",
+    subscribeToInsights: false,
+  }
+
+  const [formData, setFormData] = useState({
+    ...initialFormData,
   })
 
-  const [submitted, setSubmitted] = useState(false)
+  const [status, setStatus] = useState<"idle" | "success">("idle")
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target
+    const { name } = e.target
+    const value = e.target instanceof HTMLInputElement && e.target.type === "checkbox" ? e.target.checked : e.target.value
     setFormData((prev) => ({
       ...prev,
       [name]: value,
     }))
   }
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const resetForm = () => {
+    setFormData({ ...initialFormData })
+    setStatus("idle")
+  }
+
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     // Here you would integrate with HubSpot
     // For now, we'll just show a success message
     console.log("Form submitted:", formData)
-    setSubmitted(true)
-    setTimeout(() => {
-      setSubmitted(false)
-      setFormData({
-        firstName: "",
-        lastName: "",
-        email: "",
-        company: "",
-        phone: "",
-        message: "",
-      })
-    }, 3000)
+    setStatus("success")
+
+    if (formData.subscribeToInsights) {
+      window.open(insightsSubscribeUrl(formData.email), "_blank", "noopener,noreferrer")
+    }
   }
 
   return (
@@ -129,10 +143,32 @@ export default function ContactPage() {
             <div>
               <h2 className="text-2xl font-bold text-foreground mb-8">Send us a message</h2>
 
-              {submitted ? (
-                <div className="bg-primary/10 border border-primary text-primary rounded-lg p-6 text-center">
-                  <p className="font-semibold">Message received</p>
-                  <p className="text-sm mt-2">Thanks for reaching out. We’ll respond within 24 hours.</p>
+              {status === "success" ? (
+                <div className="bg-primary/10 border border-primary/30 rounded-lg p-6 text-center">
+                  <p className="font-semibold text-foreground">Message received</p>
+                  <p className="text-sm mt-2 text-foreground/80">Thanks for reaching out. We’ll respond within 24 hours.</p>
+
+                  {formData.subscribeToInsights && (
+                    <div className="mt-6 bg-card/60 border border-border rounded-lg p-4 text-left">
+                      <p className="font-semibold text-foreground">Confirm Insights subscription</p>
+                      <p className="text-sm text-foreground/70 mt-1">
+                        To receive new Insights posts by email, please confirm your opt-in on Substack.
+                      </p>
+                      <a
+                        href={insightsSubscribeUrl(formData.email)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mt-3 inline-flex items-center justify-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:opacity-90 transition-opacity font-medium"
+                      >
+                        Subscribe to Insights
+                      </a>
+                      <p className="text-xs text-foreground/60 mt-2">If a new tab didn’t open, use the button above.</p>
+                    </div>
+                  )}
+
+                  <button type="button" onClick={resetForm} className="mt-6 text-sm text-primary hover:underline font-medium">
+                    Send another message
+                  </button>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-5">
@@ -166,6 +202,22 @@ export default function ContactPage() {
                     required
                     className="w-full px-4 py-3 bg-background border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-accent text-foreground placeholder-foreground/50"
                   />
+
+                  <label className="flex items-start gap-3 rounded-lg border border-border bg-muted/30 px-4 py-3 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      name="subscribeToInsights"
+                      checked={formData.subscribeToInsights}
+                      onChange={handleChange}
+                      className="mt-1 h-4 w-4 accent-primary"
+                    />
+                    <span className="text-sm text-foreground/80 leading-snug">
+                      <span className="font-medium text-foreground">Email me new Insights posts</span>
+                      <span className="block text-xs text-foreground/60 mt-1">
+                        Get notified when we publish. Unsubscribe anytime.
+                      </span>
+                    </span>
+                  </label>
 
                   <input
                     type="text"
@@ -203,7 +255,7 @@ export default function ContactPage() {
                   </button>
 
                   <p className="text-xs text-foreground/60 text-center">
-                    We respect your privacy. Your information will only be used to contact you about your inquiry.
+                    We use your information to respond to your inquiry. If you opt in, we’ll also help you subscribe to Insights updates via Substack.
                   </p>
                 </form>
               )}
