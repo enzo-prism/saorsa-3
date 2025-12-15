@@ -74,7 +74,7 @@ export default function Home() {
           <Reveal className="text-center mb-10 md:mb-12">
             <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-4 text-balance">How We Help</h2>
             <p className="text-lg text-foreground/70 max-w-2xl mx-auto">
-              Every business faces critical inflection points. We bring the investor mindset and operational expertise
+              Every business faces critical inflection points. We bring the investor mindset and operational Excellence
               to help you navigate them.
             </p>
           </Reveal>
