@@ -1,255 +1,390 @@
-"use client"
-
-import { useMemo, useState } from "react"
 import Reveal from "./reveal"
-import { useEffect } from "react"
 
-type DataPoint = {
-  month: string
-  value: number
+type TimePoint = {
+  month: number
   label: string
-  note?: string
 }
 
-const dataPoints: DataPoint[] = [
-  { month: "Month 1", value: 10, label: "10%", note: "Early proof points" },
-  { month: "Month 3", value: 28, label: "28%" },
-  { month: "Month 6", value: 50, label: "50%" },
-  { month: "Month 9", value: 72, label: "75%", note: "Momentum inflection" },
-  { month: "Month 12", value: 88, label: "90%" },
-  { month: "Year 2", value: 100, label: "100%" },
+type SeriesPoint = {
+  month: number
+  value: number
+}
+
+type Scenario = {
+  id: string
+  title: string
+  subtitle: string
+  feeLabel: string
+  valueLabel: string
+  fee: SeriesPoint[]
+  value: SeriesPoint[]
+  annotation: {
+    month: number
+    text: string
+  }
+}
+
+const timePoints: TimePoint[] = [
+  { month: 0, label: "Start" },
+  { month: 3, label: "3 mo" },
+  { month: 6, label: "6 mo" },
+  { month: 12, label: "12 mo" },
 ]
 
-export default function ValueEquationChart() {
-  const [hovered, setHovered] = useState<number | null>(null)
-  const [isMobile, setIsMobile] = useState(false)
+const consultant: Scenario = {
+  id: "consultant",
+  title: "Traditional Consultant",
+  subtitle: "Flat fee. Linear output.",
+  feeLabel: "Fee (flat)",
+  valueLabel: "Value created (capped)",
+  fee: [
+    { month: 0, value: 36 },
+    { month: 3, value: 36 },
+    { month: 6, value: 36 },
+    { month: 12, value: 36 },
+  ],
+  value: [
+    { month: 0, value: 38 },
+    { month: 3, value: 39 },
+    { month: 6, value: 40 },
+    { month: 12, value: 41 },
+  ],
+  annotation: { month: 6, text: "Results are capped by hours" },
+}
 
-  useEffect(() => {
-    const update = () => setIsMobile(typeof window !== "undefined" && window.innerWidth < 640)
-    update()
-    window.addEventListener("resize", update)
-    return () => window.removeEventListener("resize", update)
-  }, [])
+const saorsa: Scenario = {
+  id: "saorsa",
+  title: "Saorsa Embedded Partner",
+  subtitle: "Predictable fee. Compounding outcomes.",
+  feeLabel: "Fee (flat / modest step-ups)",
+  valueLabel: "Value created (compounding)",
+  fee: [
+    { month: 0, value: 36 },
+    { month: 3, value: 36 },
+    { month: 6, value: 38 },
+    { month: 12, value: 38 },
+  ],
+  value: [
+    { month: 0, value: 38 },
+    { month: 3, value: 45 },
+    { month: 6, value: 65 },
+    { month: 12, value: 100 },
+  ],
+  annotation: { month: 6, text: "Compounds as systems take hold" },
+}
 
-  const colors = {
-    curve: "var(--color-primary)",
-    baseline: "rgba(26,28,23,0.6)",
-    grid: "rgba(26,28,23,0.08)",
-    tooltipBg: "rgba(26,28,23,0.95)",
-    tooltipText: "rgba(231,217,203,0.95)",
-  }
+const dims = {
+  width: 420,
+  height: 272,
+  padding: { top: 22, right: 18, bottom: 34, left: 38 },
+}
 
-  const dims = isMobile
-    ? {
-        width: 520,
-        height: 360,
-        padding: { top: 40, right: 44, bottom: 72, left: 72 },
-        tooltip: { w: 200, h: 88, offsetY: 12 },
-        baselineValue: 20,
-      }
-    : {
-        width: 920,
-        height: 420,
-        padding: { top: 48, right: 72, bottom: 84, left: 96 },
-        tooltip: { w: 220, h: 92, offsetY: 14 },
-        baselineValue: 20,
-      }
+const colors = {
+  grid: "var(--color-foreground)",
+  tick: "var(--color-foreground)",
+  consultantValue: "var(--color-secondary)",
+  consultantFee: "var(--color-foreground)",
+  saorsaValue: "var(--color-primary)",
+  saorsaFee: "var(--color-foreground)",
+  annotation: "var(--color-foreground)",
+}
 
-  const chartWidth = dims.width - dims.padding.left - dims.padding.right
-  const chartHeight = dims.height - dims.padding.top - dims.padding.bottom
-  const baselineY = dims.padding.top + chartHeight - (dims.baselineValue / 100) * chartHeight
+function clamp(value: number, min: number, max: number) {
+  return Math.max(min, Math.min(max, value))
+}
 
-  const points = useMemo(
-    () =>
-      dataPoints.map((d, i) => ({
-        x: dims.padding.left + (i / (dataPoints.length - 1)) * chartWidth,
-        y: dims.padding.top + chartHeight - (d.value / 100) * chartHeight,
-        ...d,
-      })),
-    [chartHeight, chartWidth, dims.padding.left, dims.padding.top]
-  )
+function polylinePath(points: { x: number; y: number }[]) {
+  return points.reduce((acc, point, index) => (index === 0 ? `M ${point.x} ${point.y}` : `${acc} L ${point.x} ${point.y}`), "")
+}
 
-  const pathD = points.reduce((acc, point, i) => {
-    if (i === 0) return `M ${point.x} ${point.y}`
-    const prev = points[i - 1]
+function smoothPath(points: { x: number; y: number }[]) {
+  return points.reduce((acc, point, index) => {
+    if (index === 0) return `M ${point.x} ${point.y}`
+    const prev = points[index - 1]
     const cpx1 = prev.x + (point.x - prev.x) / 3
     const cpx2 = prev.x + (2 * (point.x - prev.x)) / 3
     return `${acc} C ${cpx1} ${prev.y}, ${cpx2} ${point.y}, ${point.x} ${point.y}`
   }, "")
+}
 
-  const areaD = `${pathD} L ${points[points.length - 1].x} ${dims.padding.top + chartHeight} L ${dims.padding.left} ${
-    dims.padding.top + chartHeight
-  } Z`
+function seriesToPoints(series: SeriesPoint[], minMonth: number, maxMonth: number, minValue: number, maxValue: number) {
+  const chartWidth = dims.width - dims.padding.left - dims.padding.right
+  const chartHeight = dims.height - dims.padding.top - dims.padding.bottom
 
-  const getTooltipPos = (x: number, y: number) => {
-    const tx = Math.min(Math.max(x - dims.tooltip.w / 2, dims.padding.left), dims.width - dims.padding.right - dims.tooltip.w)
-    const ty = Math.max(y - dims.tooltip.h - dims.tooltip.offsetY, dims.padding.top + 6)
-    return { x: tx, y: ty }
-  }
+  return series.map(({ month, value }) => {
+    const monthProgress = (month - minMonth) / (maxMonth - minMonth)
+    const valueProgress = (value - minValue) / (maxValue - minValue)
+    return {
+      month,
+      value,
+      x: dims.padding.left + monthProgress * chartWidth,
+      y: dims.padding.top + chartHeight - valueProgress * chartHeight,
+    }
+  })
+}
 
+function netAreaPath(valueLine: { x: number; y: number }[], feeLine: { x: number; y: number }[]) {
+  if (valueLine.length === 0 || feeLine.length === 0) return ""
+
+  const chartHeight = dims.height - dims.padding.top - dims.padding.bottom
+  const bottomY = dims.padding.top + chartHeight
+
+  const valueShape = `${polylinePath(valueLine)} L ${valueLine[valueLine.length - 1].x} ${bottomY} L ${valueLine[0].x} ${bottomY} Z`
+  const feeShape = `${polylinePath(feeLine)} L ${feeLine[feeLine.length - 1].x} ${bottomY} L ${feeLine[0].x} ${bottomY} Z`
+  return `${valueShape} ${feeShape}`
+}
+
+function ScenarioCard({ scenario }: { scenario: Scenario }) {
+  const minMonth = timePoints[0].month
+  const maxMonth = timePoints[timePoints.length - 1].month
+  const minValue = 0
+  const maxValue = 100
+
+  const feePoints = seriesToPoints(scenario.fee, minMonth, maxMonth, minValue, maxValue)
+  const valuePoints = seriesToPoints(scenario.value, minMonth, maxMonth, minValue, maxValue)
+
+  const ticks = [0, 25, 50, 75, 100]
+  const chartWidth = dims.width - dims.padding.left - dims.padding.right
+  const chartHeight = dims.height - dims.padding.top - dims.padding.bottom
+
+  const isSaorsa = scenario.id === "saorsa"
+  const valueStroke = isSaorsa ? colors.saorsaValue : colors.consultantValue
+  const feeStroke = isSaorsa ? colors.saorsaFee : colors.consultantFee
+  const fill = isSaorsa ? colors.saorsaValue : colors.consultantValue
+
+  const titleId = `value-equation-${scenario.id}-title`
+  const descId = `value-equation-${scenario.id}-desc`
+
+  const labelSafeTop = 14
+  const labelSafeBottom = dims.height - dims.padding.bottom - 6
+  const lastValue = valuePoints[valuePoints.length - 1]
+  const lastFee = feePoints[feePoints.length - 1]
+
+  const annotationPoint = valuePoints.reduce(
+    (closest, point) => {
+      if (!closest) return point
+      return Math.abs(point.month - scenario.annotation.month) < Math.abs(closest.month - scenario.annotation.month) ? point : closest
+    },
+    null as null | (typeof valuePoints)[number]
+  )
+
+  return (
+    <Reveal
+      className={`relative bg-card border border-border rounded-xl p-6 md:p-8 shadow-sm overflow-hidden ${
+        isSaorsa ? "ring-1 ring-primary/10" : ""
+      }`}
+    >
+      {isSaorsa && (
+        <div aria-hidden className="pointer-events-none absolute inset-0">
+          <div className="absolute -top-24 -right-24 h-64 w-64 rounded-full bg-primary/10 blur-3xl" />
+          <div className="absolute -bottom-24 -left-24 h-64 w-64 rounded-full bg-accent/10 blur-3xl" />
+        </div>
+      )}
+
+      <div className="relative">
+        <div className="mb-4">
+          <h3 className="text-lg md:text-xl font-semibold text-foreground">{scenario.title}</h3>
+          <p className="text-sm text-foreground/70">{scenario.subtitle}</p>
+        </div>
+
+        <div className="flex flex-wrap items-center gap-3 mb-4 text-xs font-medium text-foreground/80">
+          <span className="inline-flex items-center gap-2 rounded-full border border-border bg-background/60 px-3 py-1">
+            <span className="h-2 w-2 rounded-full" style={{ background: valueStroke }} />
+            {scenario.valueLabel}
+          </span>
+          <span className="inline-flex items-center gap-2 rounded-full border border-border bg-background/60 px-3 py-1">
+            <span className="h-2 w-2 rounded-full bg-foreground/50" />
+            {scenario.feeLabel}
+          </span>
+        </div>
+
+        <svg
+          viewBox={`0 0 ${dims.width} ${dims.height}`}
+          className="w-full h-auto"
+          role="img"
+          aria-labelledby={`${titleId} ${descId}`}
+        >
+          <title id={titleId}>{scenario.title}: fee versus value over time</title>
+          <desc id={descId}>
+            Conceptual, indexed chart. Dashed line shows fees over time. Solid line shows cumulative value created over time. The shaded area is the gap
+            between value and fee.
+          </desc>
+
+          {/* Grid + ticks */}
+          {ticks.map((tick) => {
+            const y = dims.padding.top + chartHeight - (tick / 100) * chartHeight
+            return (
+              <g key={tick}>
+                <line
+                  x1={dims.padding.left}
+                  y1={y}
+                  x2={dims.width - dims.padding.right}
+                  y2={y}
+                  stroke={colors.grid}
+                  strokeOpacity={0.12}
+                  strokeWidth={1}
+                />
+                <text
+                  x={dims.padding.left - 10}
+                  y={y + 3}
+                  textAnchor="end"
+                  fontSize={11}
+                  fill={colors.tick}
+                  fillOpacity={0.55}
+                  style={{ fontWeight: 500 }}
+                >
+                  {tick}
+                </text>
+              </g>
+            )
+          })}
+
+          {/* X-axis labels */}
+          {timePoints.map((tp) => {
+            const x = dims.padding.left + ((tp.month - minMonth) / (maxMonth - minMonth)) * chartWidth
+            return (
+              <text
+                key={tp.month}
+                x={x}
+                y={dims.height - 12}
+                textAnchor="middle"
+                fontSize={11}
+                fill={colors.tick}
+                fillOpacity={0.55}
+                style={{ fontWeight: 500 }}
+              >
+                {tp.label}
+              </text>
+            )
+          })}
+
+          {/* Y-axis label */}
+          <text x={dims.padding.left} y={dims.padding.top - 8} fontSize={11} fill={colors.tick} fillOpacity={0.65} style={{ fontWeight: 600 }}>
+            Impact index
+          </text>
+
+          {/* Net value area (value - fee) */}
+          <path d={netAreaPath(valuePoints, feePoints)} fill={fill} fillOpacity={isSaorsa ? 0.14 : 0.1} fillRule="evenodd" />
+
+          {/* Fee line */}
+          <path
+            d={polylinePath(feePoints)}
+            fill="none"
+            stroke={feeStroke}
+            strokeOpacity={0.6}
+            strokeWidth={2}
+            strokeDasharray="6 5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+
+          {/* Value line */}
+          <path d={smoothPath(valuePoints)} fill="none" stroke={valueStroke} strokeWidth={3} strokeLinecap="round" strokeLinejoin="round" />
+
+          {/* End markers */}
+          <circle cx={lastFee.x} cy={lastFee.y} r={4} fill="var(--color-card)" stroke={feeStroke} strokeOpacity={0.75} strokeWidth={2} />
+          <circle cx={lastValue.x} cy={lastValue.y} r={5} fill="var(--color-card)" stroke={valueStroke} strokeWidth={2.5} />
+
+          {/* Direct labels (outlined for readability) */}
+          <text
+            x={lastValue.x - 8}
+            y={clamp(lastValue.y - 10, labelSafeTop, labelSafeBottom)}
+            textAnchor="end"
+            fontSize={12}
+            fill={valueStroke}
+            stroke="var(--color-card)"
+            strokeWidth={4}
+            paintOrder="stroke"
+            style={{ fontWeight: 700 }}
+          >
+            Value
+          </text>
+          <text
+            x={lastFee.x - 8}
+            y={clamp(lastFee.y + 16, labelSafeTop, labelSafeBottom)}
+            textAnchor="end"
+            fontSize={12}
+            fill={feeStroke}
+            fillOpacity={0.8}
+            stroke="var(--color-card)"
+            strokeWidth={4}
+            paintOrder="stroke"
+            style={{ fontWeight: 700 }}
+          >
+            Fee
+          </text>
+
+          {/* Annotation */}
+          {annotationPoint && (
+            <>
+              <line
+                x1={annotationPoint.x}
+                y1={annotationPoint.y}
+                x2={annotationPoint.x + 42}
+                y2={annotationPoint.y - 34}
+                stroke={colors.annotation}
+                strokeOpacity={0.35}
+                strokeWidth={1.5}
+              />
+              <text
+                x={annotationPoint.x + 46}
+                y={annotationPoint.y - 38}
+                fontSize={11}
+                fill={colors.annotation}
+                fillOpacity={0.85}
+                stroke="var(--color-card)"
+                strokeWidth={4}
+                paintOrder="stroke"
+                style={{ fontWeight: 600 }}
+              >
+                {scenario.annotation.text}
+              </text>
+            </>
+          )}
+        </svg>
+
+        <div className="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs text-foreground/70">
+          <div>
+            <p className="font-medium text-foreground/80">Cost</p>
+            <p>{isSaorsa ? "Flat / modest step-ups" : "Flat fee"}</p>
+          </div>
+          <div>
+            <p className="font-medium text-foreground/80">Value</p>
+            <p>{isSaorsa ? "Compounds over time" : "Grows linearly"}</p>
+          </div>
+          <div>
+            <p className="font-medium text-foreground/80">Takeaway</p>
+            <p>{isSaorsa ? "The gap widens" : "The gap stays small"}</p>
+          </div>
+        </div>
+      </div>
+    </Reveal>
+  )
+}
+
+export default function ValueEquationChart() {
   return (
     <section className="py-16 md:py-24 px-4 bg-background">
       <div className="max-w-6xl mx-auto">
         <div className="mb-10 md:mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-2">The Value Equation</h2>
-          <p className="text-foreground/70">Visualizing our retainer philosophy: Value vs. Time</p>
+          <p className="text-foreground/70">
+            A flat fee can buy hours from a consultant—or compounding results from an embedded partner.
+          </p>
         </div>
 
-        <Reveal className="bg-card border border-border rounded-xl p-6 md:p-8 shadow-sm">
-          {/* Legend */}
-          <div className="flex flex-wrap items-center gap-4 md:gap-6 mb-6 text-xs md:text-sm font-medium text-foreground/80">
-            <div className="flex items-center gap-2">
-              <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full border-2 border-primary text-primary bg-card">
-                <span className="h-2 w-2 rounded-full bg-primary" />
-                Value Added
-              </span>
-              <span className="text-foreground/60">(Strategic Partnership)</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full border border-dashed border-foreground/40 text-foreground/70">
-                <span className="h-2 w-2 rounded-full bg-foreground/50" />
-                Time/Cost
-              </span>
-              <span className="text-foreground/60">(Traditional Consulting)</span>
-            </div>
-          </div>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <ScenarioCard scenario={consultant} />
+          <ScenarioCard scenario={saorsa} />
+        </div>
 
-          {/* Chart */}
-          <div className="relative overflow-x-auto">
-            <svg
-              viewBox={`0 0 ${dims.width} ${dims.height}`}
-              className="w-full h-auto min-w-[300px]"
-              role="img"
-              aria-label="The Value Equation chart comparing value added over time versus traditional consulting baseline."
-            >
-              <desc>Illustrates cumulative value versus time compared to traditional consulting baseline.</desc>
-
-              {/* Y-axis label */}
-              <text
-                x={32}
-                y={dims.height / 2}
-                textAnchor="middle"
-                transform={`rotate(-90, 32, ${dims.height / 2})`}
-                className="fill-foreground/60 text-xs font-medium"
-              >
-                Business Impact & Asset Value
-              </text>
-
-              {/* Horizontal grid lines */}
-              {(isMobile ? [25, 50, 75, 100] : [20, 40, 60, 80, 100]).map((tick) => {
-                const y = dims.padding.top + chartHeight - (tick / 100) * chartHeight
-                return (
-                  <g key={tick}>
-                    <line x1={dims.padding.left} y1={y} x2={dims.width - dims.padding.right} y2={y} stroke={colors.grid} strokeWidth={1} />
-                    <text x={dims.padding.left - 10} y={y + 3} textAnchor="end" className="fill-foreground/40 text-[10px] md:text-[11px]">
-                      {tick}%
-                    </text>
-                  </g>
-                )
-              })}
-
-              {/* Vertical grid lines */}
-              {points.map((point, idx) => (
-                <line
-                  key={`v-${idx}`}
-                  x1={point.x}
-                  y1={dims.padding.top}
-                  x2={point.x}
-                  y2={dims.padding.top + chartHeight}
-                  stroke={colors.grid}
-                  strokeWidth={0.75}
-                />
-              ))}
-
-              {/* Filled area under curve */}
-              <path d={areaD} style={{ fill: colors.curve, opacity: 0.12 }} />
-
-              {/* Baseline */}
-              <line
-                x1={dims.padding.left}
-                y1={baselineY}
-                x2={dims.width - dims.padding.right}
-                y2={baselineY}
-                stroke={colors.baseline}
-                strokeWidth={2}
-                strokeDasharray="6 6"
-              />
-
-              {/* Value curve */}
-              <path d={pathD} fill="none" stroke={colors.curve} strokeWidth={isMobile ? 3 : 4} strokeLinecap="round" strokeLinejoin="round" />
-
-              {/* Data points + labels */}
-              {points.map((point, i) => (
-                <g key={i}>
-                  {/* larger touch halo for mobile */}
-                  <circle
-                    cx={point.x}
-                    cy={point.y}
-                    r={hovered === i ? 16 : 14}
-                    fill="transparent"
-                    onMouseEnter={() => !isMobile && setHovered(i)}
-                    onMouseLeave={() => !isMobile && setHovered(null)}
-                    onClick={() => setHovered((prev) => (prev === i ? null : i))}
-                    style={{ cursor: "pointer" }}
-                  />
-                  <circle
-                    cx={point.x}
-                    cy={point.y}
-                    r={hovered === i ? 10 : 8}
-                    fill="var(--color-card)"
-                    stroke={colors.curve}
-                    strokeWidth={3}
-                    onMouseEnter={() => !isMobile && setHovered(i)}
-                    onMouseLeave={() => !isMobile && setHovered(null)}
-                    onClick={() => setHovered((prev) => (prev === i ? null : i))}
-                    style={{ cursor: "pointer" }}
-                    filter={hovered === i ? "drop-shadow(0 2px 6px rgba(61,68,53,0.35))" : "none"}
-                  />
-                  <text x={point.x} y={dims.height - 24} textAnchor="middle" className="fill-foreground/70 text-[10px] md:text-[11px]">
-                    {point.month}
-                  </text>
-                </g>
-              ))}
-
-              {/* Single tooltip layer to ensure it stays above markers */}
-              {hovered !== null && points[hovered] && (
-                <g style={{ pointerEvents: "none" }}>
-                  {(() => {
-                    const point = points[hovered]
-                    const { x: tx, y: ty } = getTooltipPos(point.x, point.y)
-                    return (
-                      <>
-                        <rect x={tx} y={ty} width={dims.tooltip.w} height={dims.tooltip.h} rx={12} fill={colors.tooltipBg} />
-                        <text x={tx + 12} y={ty + 20} className="text-[13px] md:text-sm font-semibold" fill={colors.tooltipText}>
-                          {point.month}
-                        </text>
-                        <g transform={`translate(${tx + 12}, ${ty + 36})`}>
-                          <rect width={9} height={9} rx={2} fill={colors.curve} />
-                          <text x={14} y={8} className="text-[11px] md:text-xs" fill={colors.tooltipText}>
-                            Impact: {point.label} (Cumulative)
-                          </text>
-                        </g>
-                        <g transform={`translate(${tx + 12}, ${ty + 52})`}>
-                          <rect width={9} height={9} rx={2} fill="rgba(255,255,255,0.7)" stroke={colors.baseline} />
-                          <text x={14} y={8} className="text-[11px] md:text-xs" fill={colors.tooltipText}>
-                            Input: Constant Hourly Billing
-                          </text>
-                        </g>
-                        {point.note && (
-                          <text x={tx + 12} y={ty + 70} className="text-[11px]" fill="rgba(231,217,203,0.7)">
-                            {point.note}
-                          </text>
-                        )}
-                      </>
-                    )
-                  })()}
-                </g>
-              )}
-            </svg>
-          </div>
-
-          <p className="text-xs text-foreground/65 mt-6 text-center italic">
-            *Conceptual illustration of our value-add methodology compared to traditional time-based consulting.
+        <Reveal className="mt-8 bg-muted/30 border border-border rounded-xl p-5 md:p-6">
+          <p className="text-sm md:text-base text-foreground/80">
+            <span className="font-semibold text-foreground">Takeaway:</span> predictable fees, radically different outcomes—because value compounds when
+            Saorsa works shoulder to shoulder with you.
+          </p>
+          <p className="text-xs text-foreground/60 mt-2">
+            *Illustrative, indexed visualization. Outcomes vary by business, timing, and execution.
           </p>
         </Reveal>
       </div>
