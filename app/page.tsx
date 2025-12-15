@@ -41,8 +41,9 @@ export default function Home() {
           </p>
 
           <p className="text-sm md:text-base text-foreground/60 text-balance mb-8 max-w-2xl mx-auto leading-relaxed">
-            Every business faces critical inflection points. We bring the investor mindset and operational Excellence to
-            help you navigate them.
+            Every business faces critical inflection points. We bring the investor mindset and operational{" "}
+            <span className="underline underline-offset-4 decoration-primary/40">excellence</span> to help you navigate
+            them.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
@@ -74,8 +75,9 @@ export default function Home() {
           <Reveal className="text-center mb-10 md:mb-12">
             <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-4 text-balance">How We Help</h2>
             <p className="text-lg text-foreground/70 max-w-2xl mx-auto">
-              Every business faces critical inflection points. We bring the investor mindset and operational Excellence
-              to help you navigate them.
+              Every business faces critical inflection points. We bring the investor mindset and operational{" "}
+              <span className="underline underline-offset-4 decoration-primary/40">excellence</span> to help you navigate
+              them.
             </p>
           </Reveal>
 
