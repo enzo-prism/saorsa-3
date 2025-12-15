@@ -4,6 +4,7 @@ import ValueEquationChart from "@/components/value-equation-chart"
 import ServicesCarousel from "@/components/services-carousel"
 import Reveal from "@/components/reveal"
 import HeroVideo from "@/components/hero-video"
+import LatestInsightHero from "@/components/latest-insight-hero"
 
 export default function Home() {
   return (
@@ -39,7 +40,7 @@ export default function Home() {
             trials, and drive measurable value while working shoulder to shoulder with you.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
             <Link
               href="/contact"
               className="px-8 py-3 bg-primary text-primary-foreground rounded-lg font-medium flex items-center justify-center gap-2 transition-all duration-200 ease-out hover-lift hover:bg-primary/90 active:translate-y-[1px]"
@@ -52,6 +53,10 @@ export default function Home() {
             >
               Read Our Insights
             </Link>
+          </div>
+
+          <div className="mb-8">
+            <LatestInsightHero />
           </div>
 
           <p className="text-sm text-foreground/60">Beyond consulting. True partnership.</p>

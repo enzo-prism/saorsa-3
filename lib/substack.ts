@@ -34,6 +34,7 @@ interface RSSFeed {
 }
 
 const SUBSTACK_FEED_URL = "https://conduitofvalue.substack.com/feed"
+const SUBSTACK_REVALIDATE_SECONDS = 900
 
 function extractSlugFromLink(link: string): string {
   // Extract slug from URL like https://conduitofvalue.substack.com/p/when-the-throttle-sticks
@@ -57,7 +58,7 @@ function parseRSSItem(item: RSSItem): SubstackPost {
 export async function getSubstackPosts(): Promise<SubstackPost[]> {
   try {
     const response = await fetch(SUBSTACK_FEED_URL, {
-      next: { revalidate: 3600 }, // Revalidate every hour
+      next: { revalidate: SUBSTACK_REVALIDATE_SECONDS },
     })
 
     if (!response.ok) {

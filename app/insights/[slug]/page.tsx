@@ -9,7 +9,7 @@ import Reveal from "@/components/reveal"
 import ScrollProgress from "@/components/scroll-progress"
 import type { Metadata } from "next"
 
-export const revalidate = 3600 // Revalidate every hour
+export const revalidate = 900 // Revalidate every 15 minutes
 
 interface PageProps {
   params: Promise<{ slug: string }>
