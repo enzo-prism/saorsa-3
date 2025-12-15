@@ -6,6 +6,20 @@ import { ArrowLeft, ArrowRight, DollarSign, Rocket, TrendingUp, Wrench, Handshak
 
 const services = [
   {
+    icon: Handshake,
+    title: "How Do I Sell This?",
+    subtitle: "M&A Strategy",
+    description:
+      "Define the transaction goal first, underwrite and model the business, and run a sponsor-led process to reach the right outcome.",
+  },
+  {
+    icon: TrendingUp,
+    title: "How Do I Grow This?",
+    subtitle: "Small Business Excellence",
+    description:
+      "Install scalable systems, reporting, and mentorship so you operate like an owner-investor—building a durable, valuable asset and legacy.",
+  },
+  {
     icon: DollarSign,
     title: "How Do I Fund This?",
     subtitle: "Capital Strategy",
@@ -20,25 +34,11 @@ const services = [
       "Stand up the financial infrastructure, operating cadence, and capital structure that turn ambition into executable, investor-ready plans.",
   },
   {
-    icon: TrendingUp,
-    title: "How Do I Grow This?",
-    subtitle: "Small Business Excellence",
-    description:
-      "Install scalable systems, reporting, and mentorship so you operate like an owner-investor—building a durable, valuable asset and legacy.",
-  },
-  {
     icon: Wrench,
     title: "How Do I Fix This?",
     subtitle: "Turnaround Planning",
     description:
       "Create a credible turnaround plan, communicate it to lenders and investors, and negotiate alongside you to restore confidence and execution.",
-  },
-  {
-    icon: Handshake,
-    title: "How Do I Sell This?",
-    subtitle: "M&A Strategy",
-    description:
-      "Define the transaction goal first, underwrite and model the business, and run a sponsor-led process to reach the right outcome.",
   },
 ]
 
