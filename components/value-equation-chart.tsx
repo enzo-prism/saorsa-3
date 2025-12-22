@@ -221,6 +221,9 @@ function ScenarioCard({ scenario }: { scenario: Scenario }) {
     },
     null as null | (typeof valuePoints)[number]
   )
+  const annotationOffsets = isSaorsa
+    ? { lineX: 42, lineY: -34, textX: 46, textY: -38, textAnchor: "start" }
+    : { lineX: -42, lineY: -34, textX: -46, textY: -38, textAnchor: "end" }
 
   return (
     <Reveal
@@ -374,21 +377,22 @@ function ScenarioCard({ scenario }: { scenario: Scenario }) {
               <line
                 x1={annotationPoint.x}
                 y1={annotationPoint.y}
-                x2={annotationPoint.x + 42}
-                y2={annotationPoint.y - 34}
+                x2={annotationPoint.x + annotationOffsets.lineX}
+                y2={annotationPoint.y + annotationOffsets.lineY}
                 stroke={colors.annotation}
                 strokeOpacity={0.35}
                 strokeWidth={1.5}
               />
               <text
-                x={annotationPoint.x + 46}
-                y={annotationPoint.y - 38}
+                x={annotationPoint.x + annotationOffsets.textX}
+                y={annotationPoint.y + annotationOffsets.textY}
                 fontSize={11}
                 fill={colors.annotation}
                 fillOpacity={0.85}
                 stroke="var(--color-card)"
                 strokeWidth={4}
                 paintOrder="stroke"
+                textAnchor={annotationOffsets.textAnchor}
                 style={{ fontWeight: 600 }}
               >
                 {scenario.annotation.text}
