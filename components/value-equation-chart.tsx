@@ -69,8 +69,9 @@ const saorsa: Scenario = {
   ],
   value: [
     { month: 0, value: 18 },
-    { month: 3, value: 26 },
-    { month: 6, value: 42 },
+    { month: 3, value: 24 },
+    { month: 6, value: 34 },
+    { month: 9, value: 56 },
     { month: 12, value: 100 },
   ],
   annotation: { month: 6, text: "Compounds as systems take hold" },
@@ -101,13 +102,64 @@ function polylinePath(points: { x: number; y: number }[]) {
 }
 
 function smoothPath(points: { x: number; y: number }[]) {
-  return points.reduce((acc, point, index) => {
-    if (index === 0) return `M ${point.x} ${point.y}`
-    const prev = points[index - 1]
-    const cpx1 = prev.x + (point.x - prev.x) / 3
-    const cpx2 = prev.x + (2 * (point.x - prev.x)) / 3
-    return `${acc} C ${cpx1} ${prev.y}, ${cpx2} ${point.y}, ${point.x} ${point.y}`
-  }, "")
+  if (points.length === 0) return ""
+  if (points.length === 1) return `M ${points[0].x} ${points[0].y}`
+
+  const xs = points.map((point) => point.x)
+  const ys = points.map((point) => point.y)
+  const n = points.length
+  const delta: number[] = []
+  const slopes: number[] = new Array(n).fill(0)
+
+  for (let i = 0; i < n - 1; i += 1) {
+    const dx = xs[i + 1] - xs[i]
+    delta[i] = dx === 0 ? 0 : (ys[i + 1] - ys[i]) / dx
+  }
+
+  slopes[0] = delta[0] ?? 0
+  slopes[n - 1] = delta[n - 2] ?? 0
+
+  for (let i = 1; i < n - 1; i += 1) {
+    slopes[i] = (delta[i - 1] + delta[i]) / 2
+  }
+
+  // Monotone cubic interpolation to avoid overshoot and point-to-point wiggles.
+  for (let i = 0; i < n - 1; i += 1) {
+    if (delta[i] === 0) {
+      slopes[i] = 0
+      slopes[i + 1] = 0
+      continue
+    }
+
+    const a = slopes[i] / delta[i]
+    const b = slopes[i + 1] / delta[i]
+
+    if (a < 0 || b < 0) {
+      slopes[i] = 0
+      slopes[i + 1] = 0
+      continue
+    }
+
+    const sum = a * a + b * b
+    if (sum > 9) {
+      const scale = 3 / Math.sqrt(sum)
+      slopes[i] = scale * a * delta[i]
+      slopes[i + 1] = scale * b * delta[i]
+    }
+  }
+
+  let path = `M ${xs[0]} ${ys[0]}`
+
+  for (let i = 0; i < n - 1; i += 1) {
+    const dx = xs[i + 1] - xs[i]
+    const cpx1 = xs[i] + dx / 3
+    const cpy1 = ys[i] + (slopes[i] * dx) / 3
+    const cpx2 = xs[i + 1] - dx / 3
+    const cpy2 = ys[i + 1] - (slopes[i + 1] * dx) / 3
+    path += ` C ${cpx1} ${cpy1}, ${cpx2} ${cpy2}, ${xs[i + 1]} ${ys[i + 1]}`
+  }
+
+  return path
 }
 
 function seriesToPoints(series: SeriesPoint[], minMonth: number, maxMonth: number, minValue: number, maxValue: number) {
