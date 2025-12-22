@@ -60,9 +60,9 @@ const saorsa: Scenario = {
   valueLabel: "Value created (compounding)",
   fee: [
     { month: 0, value: 36 },
-    { month: 3, value: 36 },
-    { month: 6, value: 38 },
-    { month: 12, value: 38 },
+    { month: 3, value: 37 },
+    { month: 6, value: 40 },
+    { month: 12, value: 42 },
   ],
   value: [
     { month: 0, value: 38 },
