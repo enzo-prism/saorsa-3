@@ -446,15 +446,19 @@ export default function ValueEquationChart() {
             instinct, we step in. By anchoring accountability and experimentation to the finance function, we improve
             capital efficiency and focus the business on the metrics that drive real value, both today and at exit.
           </p>
-          <p className="mt-3 text-sm">
+          <p className="mt-4 text-sm md:text-base text-foreground/75">
+            See how this model plays out in real engagements—clear scope, faster decisions, and measurable compounding
+            outcomes.
+          </p>
+          <div className="mt-3">
             <Link
               href="/partners#case-studies"
-              className="font-semibold text-primary underline underline-offset-4 decoration-primary/40 hover:decoration-primary/70"
+              className="inline-flex items-center justify-center rounded-lg border border-primary/30 bg-primary/10 px-4 py-2 text-sm font-semibold text-primary transition-colors hover:bg-primary/15"
             >
               Explore case studies
             </Link>
-          </p>
-          <p className="text-xs text-foreground/60 mt-3">
+          </div>
+          <p className="text-xs text-foreground/60 mt-4">
             *Illustrative, indexed visualization. Outcomes vary by business, timing, and execution.
           </p>
         </Reveal>
