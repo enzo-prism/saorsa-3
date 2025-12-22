@@ -1,3 +1,4 @@
+import Link from "next/link"
 import Reveal from "./reveal"
 
 type TimePoint = {
@@ -34,40 +35,42 @@ const timePoints: TimePoint[] = [
 const consultant: Scenario = {
   id: "consultant",
   title: "Traditional Consultant",
-  subtitle: "Flat fee. Linear output.",
+  subtitle:
+    "Traditional consultants charge hourly or by scope. You define the problems, manage the work, and outcomes scale linearly with time spent, which caps impact and creates ongoing dependency.",
   feeLabel: "Fee (flat)",
   valueLabel: "Value created (capped)",
   fee: [
-    { month: 0, value: 36 },
-    { month: 3, value: 36 },
-    { month: 6, value: 36 },
-    { month: 12, value: 36 },
+    { month: 0, value: 12 },
+    { month: 3, value: 16 },
+    { month: 6, value: 20 },
+    { month: 12, value: 28 },
   ],
   value: [
-    { month: 0, value: 38 },
-    { month: 3, value: 39 },
-    { month: 6, value: 40 },
-    { month: 12, value: 41 },
+    { month: 0, value: 18 },
+    { month: 3, value: 22 },
+    { month: 6, value: 26 },
+    { month: 12, value: 34 },
   ],
   annotation: { month: 6, text: "Results are capped by hours" },
 }
 
 const saorsa: Scenario = {
   id: "saorsa",
-  title: "Saorsa Embedded Partner",
-  subtitle: "Predictable fee. Compounding outcomes.",
+  title: "Saorsa",
+  subtitle:
+    "Saorsa operates as an embedded partner on a fixed retainer. We proactively identify and execute the highest-leverage opportunities across growth, operations, and profitability. Like a true equity partner, we focus on compounding improvements, our model works when your business grows faster, runs cleaner, and becomes meaningfully more profitable over time.",
   feeLabel: "Fee (flat / modest step-ups)",
   valueLabel: "Value created (compounding)",
   fee: [
-    { month: 0, value: 36 },
-    { month: 3, value: 37 },
-    { month: 6, value: 40 },
-    { month: 12, value: 42 },
+    { month: 0, value: 12 },
+    { month: 3, value: 16 },
+    { month: 6, value: 22 },
+    { month: 12, value: 36 },
   ],
   value: [
-    { month: 0, value: 38 },
-    { month: 3, value: 45 },
-    { month: 6, value: 65 },
+    { month: 0, value: 18 },
+    { month: 3, value: 26 },
+    { month: 6, value: 42 },
     { month: 12, value: 100 },
   ],
   annotation: { month: 6, text: "Compounds as systems take hold" },
@@ -382,7 +385,20 @@ export default function ValueEquationChart() {
             <span className="font-semibold text-foreground">Takeaway:</span> predictable fees, radically different outcomes—because value compounds when
             Saorsa works shoulder to shoulder with you.
           </p>
-          <p className="text-xs text-foreground/60 mt-2">
+          <p className="mt-3 text-sm md:text-base text-foreground/80">
+            <span className="font-semibold text-foreground">Example:</span> When growth slows due to unclear ownership and capital decisions driven by
+            instinct, we step in. By anchoring accountability and experimentation to the finance function, we improve
+            capital efficiency and focus the business on the metrics that drive real value, both today and at exit.
+          </p>
+          <p className="mt-3 text-sm">
+            <Link
+              href="/partners#case-studies"
+              className="font-semibold text-primary underline underline-offset-4 decoration-primary/40 hover:decoration-primary/70"
+            >
+              Explore case studies
+            </Link>
+          </p>
+          <p className="text-xs text-foreground/60 mt-3">
             *Illustrative, indexed visualization. Outcomes vary by business, timing, and execution.
           </p>
         </Reveal>

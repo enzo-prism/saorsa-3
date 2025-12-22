@@ -58,7 +58,7 @@ export default function PartnersPage() {
       </section>
 
       {/* Case Studies */}
-      <section className="py-16 md:py-24 px-4 bg-background">
+      <section id="case-studies" className="py-16 md:py-24 px-4 bg-background">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-12">Case Studies</h2>
 
