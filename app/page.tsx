@@ -152,10 +152,10 @@ export default function Home() {
       {/* CTA Section */}
       <section className="py-16 md:py-24 px-4 bg-primary text-primary-foreground">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl md:text-5xl font-bold mb-6 text-balance">Ready to Start a Partnership Trial?</h2>
+          <h2 className="text-3xl md:text-5xl font-bold mb-6 text-balance">Should We Partner?</h2>
           <p className="text-lg text-primary-foreground/80 mb-8 max-w-2xl mx-auto">
-            Let's decide together if we should pursue this. We approach the first conversation with the same diligence
-            we bring to every engagement.
+            Let's find out in a real working session. From the first call, we bring investor-level rigor to clarify the
+            problem, the path, and what success looks like.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
