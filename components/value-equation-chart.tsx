@@ -152,7 +152,6 @@ function ScenarioCard({ scenario }: { scenario: Scenario }) {
   const feeStroke = isSaorsa ? colors.saorsaFee : colors.consultantFee
   const fill = isSaorsa ? colors.saorsaValue : colors.consultantValue
 
-  const titleId = `value-equation-${scenario.id}-title`
   const descId = `value-equation-${scenario.id}-desc`
 
   const labelSafeTop = 14
@@ -202,9 +201,9 @@ function ScenarioCard({ scenario }: { scenario: Scenario }) {
           viewBox={`0 0 ${dims.width} ${dims.height}`}
           className="w-full h-auto"
           role="img"
-          aria-labelledby={`${titleId} ${descId}`}
+          aria-label={`${scenario.title}: fee versus value over time`}
+          aria-describedby={descId}
         >
-          <title id={titleId}>{scenario.title}: fee versus value over time</title>
           <desc id={descId}>
             Conceptual, indexed chart. Dashed line shows fees over time. Solid line shows cumulative value created over time. The shaded area is the gap
             between value and fee.

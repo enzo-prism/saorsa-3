@@ -40,17 +40,6 @@ export default function Home() {
             trials, and drive measurable value while working shoulder to shoulder with you.
           </p>
 
-          <p className="text-sm md:text-base text-foreground/60 text-balance mb-8 max-w-2xl mx-auto leading-relaxed">
-            Every business faces critical inflection points. We bring the investor mindset and operational{" "}
-            <Link
-              href="/guiding-principles"
-              className="underline underline-offset-4 decoration-primary/40 hover:decoration-primary/70"
-            >
-              excellence
-            </Link>{" "}
-            to help you navigate them.
-          </p>
-
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
             <Link
               href="/contact"
