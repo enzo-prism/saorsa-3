@@ -37,7 +37,7 @@ const consultant: Scenario = {
   title: "Traditional Consultant",
   subtitle:
     "Traditional consultants charge hourly or by scope. You define the problems, manage the work, and outcomes scale linearly with time spent, which caps impact and creates ongoing dependency.",
-  feeLabel: "Fee (flat)",
+  feeLabel: "Fee (hourly / scoped)",
   valueLabel: "Value created (capped)",
   fee: [
     { month: 0, value: 12 },
@@ -59,7 +59,7 @@ const saorsa: Scenario = {
   title: "Saorsa",
   subtitle:
     "Saorsa operates as an embedded partner on a fixed retainer. We proactively identify and execute the highest-leverage opportunities across growth, operations, and profitability. Like a true equity partner, we focus on compounding improvements, our model works when your business grows faster, runs cleaner, and becomes meaningfully more profitable over time.",
-  feeLabel: "Fee (flat / modest step-ups)",
+  feeLabel: "Fee (fixed retainer)",
   valueLabel: "Value created (compounding)",
   fee: [
     { month: 0, value: 12 },
@@ -348,7 +348,7 @@ function ScenarioCard({ scenario }: { scenario: Scenario }) {
         <div className="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs text-foreground/70">
           <div>
             <p className="font-medium text-foreground/80">Cost</p>
-            <p>{isSaorsa ? "Flat / modest step-ups" : "Flat fee"}</p>
+            <p>{isSaorsa ? "Fixed retainer (pre-agreed step-ups)" : "Hourly / scoped fees"}</p>
           </div>
           <div>
             <p className="font-medium text-foreground/80">Value</p>
