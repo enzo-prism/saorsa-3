@@ -22,6 +22,10 @@ Continue building your app on:
 
 **[https://v0.app/chat/fGtC5WcccRy](https://v0.app/chat/fGtC5WcccRy)**
 
+## HubSpot Forms
+
+- `/api/hubspot/insights` powers the Insights email subscribe form; set `HUBSPOT_INSIGHTS_FORM_GUID` to override the default form GUID.
+
 ## How It Works
 
 1. Create and modify your project using [v0.app](https://v0.app)
