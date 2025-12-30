@@ -8,12 +8,15 @@ const DEFAULT_REGION = "na2"
 
 type ContactPayload = {
   firstName?: string
+  firstname?: string
   lastName?: string
+  lastname?: string
   email?: string
   company?: string
   phone?: string
   message?: string
   subscribeToInsights?: boolean | string
+  insights_opt_in?: boolean | string
   website?: string
   pageUri?: string
   pageName?: string
@@ -59,9 +62,14 @@ export async function POST(request: Request) {
   const region = process.env.HUBSPOT_REGION ?? DEFAULT_REGION
   const hubspotUrl = `${getHubSpotBaseUrl(region)}/submissions/v3/integration/submit/${portalId}/${formGuid}`
 
+  // Accept both camelCase and snake_case to support mixed client payloads.
+  const firstName = toStringValue(body.firstName) || toStringValue(body.firstname)
+  const lastName = toStringValue(body.lastName) || toStringValue(body.lastname)
+  const optInRaw = body.subscribeToInsights ?? body.insights_opt_in
+
   const fields = [
-    { name: "firstname", value: toStringValue(body.firstName) },
-    { name: "lastname", value: toStringValue(body.lastName) },
+    { name: "firstname", value: firstName },
+    { name: "lastname", value: lastName },
     { name: "email", value: email },
     { name: "company", value: toStringValue(body.company) },
     { name: "phone", value: toStringValue(body.phone) },
@@ -69,9 +77,7 @@ export async function POST(request: Request) {
   ].filter((field) => field.value)
 
   const subscribeToInsights =
-    body.subscribeToInsights === true ||
-    body.subscribeToInsights === "true" ||
-    body.subscribeToInsights === "on"
+    optInRaw === true || optInRaw === "true" || optInRaw === "on"
 
   if (subscribeToInsights) {
     fields.push({ name: "insights_opt_in", value: "true" })
