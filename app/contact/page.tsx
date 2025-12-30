@@ -25,13 +25,15 @@ export default function ContactPage() {
     phone: "",
     message: "",
     subscribeToInsights: false,
+    website: "",
   }
 
   const [formData, setFormData] = useState({
     ...initialFormData,
   })
 
-  const [status, setStatus] = useState<"idle" | "success">("idle")
+  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle")
+  const [errorMessage, setErrorMessage] = useState("")
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name } = e.target
@@ -40,22 +42,68 @@ export default function ContactPage() {
       ...prev,
       [name]: value,
     }))
+    if (status === "error") {
+      setStatus("idle")
+      setErrorMessage("")
+    }
   }
 
   const resetForm = () => {
     setFormData({ ...initialFormData })
     setStatus("idle")
+    setErrorMessage("")
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    // Here you would integrate with HubSpot
-    // For now, we'll just show a success message
-    console.log("Form submitted:", formData)
-    setStatus("success")
+  const getCookie = (name: string) => {
+    if (typeof document === "undefined") return ""
+    const match = document.cookie.split("; ").find((row) => row.startsWith(`${name}=`))
+    return match ? decodeURIComponent(match.split("=")[1] ?? "") : ""
+  }
 
-    if (formData.subscribeToInsights) {
-      window.open(insightsSubscribeUrl(formData.email), "_blank", "noopener,noreferrer")
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    if (status === "submitting") return
+    setStatus("submitting")
+    setErrorMessage("")
+
+    try {
+      const response = await fetch("/api/hubspot/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ...formData,
+          pageUri: window.location.href,
+          pageName: document.title,
+          hutk: getCookie("hubspotutk"),
+        }),
+      })
+
+      if (response.ok) {
+        setStatus("success")
+        if (formData.subscribeToInsights) {
+          window.open(insightsSubscribeUrl(formData.email), "_blank", "noopener,noreferrer")
+        }
+        return
+      }
+
+      let message = "Something went wrong. Please try again."
+      try {
+        const data = await response.json()
+        if (typeof data?.message === "string" && data.message.trim()) {
+          message = data.message
+        }
+      } catch {
+        // Ignore JSON parsing errors.
+      }
+
+      setErrorMessage(message)
+      setStatus("error")
+    } catch (error) {
+      console.error("Contact form submission failed.", error)
+      setErrorMessage("Unable to send your message right now. Please try again shortly.")
+      setStatus("error")
     }
   }
 
@@ -147,8 +195,8 @@ export default function ContactPage() {
 
               {status === "success" ? (
                 <div className="bg-primary/10 border border-primary/30 rounded-lg p-6 text-center">
-                  <p className="font-semibold text-foreground">Message received</p>
-                  <p className="text-sm mt-2 text-foreground/80">Thanks for reaching out. We’ll respond within 24 hours.</p>
+                  <p className="font-semibold text-foreground">Thank you, we&apos;ll be in touch soon.</p>
+                  <p className="text-sm mt-2 text-foreground/80">We’ll respond within 24 hours.</p>
 
                   {formData.subscribeToInsights && (
                     <div className="mt-6 bg-card/60 border border-border rounded-lg p-4 text-left">
@@ -174,6 +222,15 @@ export default function ContactPage() {
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-5">
+                  <input
+                    type="text"
+                    name="website"
+                    value={formData.website}
+                    onChange={handleChange}
+                    className="hidden"
+                    tabIndex={-1}
+                    autoComplete="off"
+                  />
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <input
                       type="text"
@@ -251,10 +308,17 @@ export default function ContactPage() {
 
                   <button
                     type="submit"
+                    disabled={status === "submitting"}
                     className="w-full px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:opacity-90 transition-opacity font-medium"
                   >
                     Send Message
                   </button>
+
+                  {status === "error" && errorMessage && (
+                    <p className="text-xs text-destructive text-center" role="alert">
+                      {errorMessage}
+                    </p>
+                  )}
 
                   <p className="text-xs text-foreground/60 text-center">
                     We use your information to respond to your inquiry. If you opt in, we’ll also help you subscribe to Insights updates via Substack.
