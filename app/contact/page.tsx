@@ -152,7 +152,7 @@ export default function ContactPage() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center px-4 py-2.5 rounded-full border border-primary/70 text-primary bg-primary/5 hover:bg-primary/10 transition-all duration-200 ease-out hover-lift text-sm font-medium"
               >
-                Book a 30-min consultation
+                Book a 30-min introduction
               </a>
             </div>
 
@@ -342,10 +342,10 @@ export default function ContactPage() {
                     <Calendar size={24} className="text-primary flex-shrink-0 mt-1 transition-colors group-hover:text-foreground" />
                     <div>
                       <h3 className="font-semibold text-foreground group-hover:text-foreground transition-colors">
-                        Book a Consultation
+                        Book a 30-min introduction
                       </h3>
                       <p className="text-sm text-foreground/80 group-hover:text-foreground mt-1">
-                        Schedule a 30-minute discovery call with our team
+                        Schedule a 30-minute introduction with our team
                       </p>
                     </div>
                   </a>
@@ -416,11 +416,11 @@ function FAQSection() {
     },
     {
       q: "How is this different from traditional consulting?",
-      a: "We structure engagements as partnership trials, not consulting projects. We're building relationships, not billing hours. For long-term clients, we even syndicate investment through our network—putting our capital alongside yours.",
+      a: "We think of engagements as trials for partnership rather than one-off consulting projects. We're building relationships to create tangible value rather than just billing hours. For long-term clients, we even take equity as payment or syndicate investment through our network—supporting alignment by placing our capital alongside yours.",
     },
     {
       q: "What is your fee structure?",
-      a: "We use results-focused retainers tied to measurable outcomes, not time-based billing. As strategic advisors, we are not permitted to accept success fees—our fee schedule is structured strictly around advisory services.",
+      a: "We use results-focused retainers tied to measurable outcomes, not time-based billing. Since we are not a regulated financial institution or broker, we are not permitted to accept success fees for transactions, so our fee schedule is structured strictly around retained or project-based advisory services.",
     },
     {
       q: "How do you decide which engagements to pursue?",

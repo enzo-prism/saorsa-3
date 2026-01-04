@@ -31,13 +31,14 @@ export default function Home() {
           <h1 className="text-4xl md:text-6xl font-bold text-balance text-foreground mb-6">
             Your Embedded{" "}
             <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-              Financial & Strategic Partners
+              Strategic Finance Partners
             </span>
           </h1>
 
           <p className="text-xl md:text-2xl text-foreground/70 text-balance mb-8 max-w-2xl mx-auto leading-relaxed">
-            We go beyond consulting. We embed with investor-level rigor to answer hard questions, structure partnership
-            trials, and drive measurable value while working shoulder to shoulder with you.
+            We go beyond consulting. We partner with small businesses—providing investor-level rigor to answer hard
+            questions, improve visibility, and drive measurable value creation while working shoulder to shoulder with
+            you and your team.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
