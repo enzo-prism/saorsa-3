@@ -42,6 +42,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`font-sans antialiased bg-background text-foreground`}>
+        {/* Google tag (gtag.js) */}
+        <Script src="https://www.googletagmanager.com/gtag/js?id=G-PXLYCJTDMV" strategy="afterInteractive" />
+        <Script id="gtag-config" strategy="afterInteractive">
+          {`window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-PXLYCJTDMV');`}
+        </Script>
         {/* Hotjar Tracking Code for Saorsa Growth Partners */}
         <Script id="hotjar-tracking" strategy="afterInteractive">
           {`(function(h,o,t,j,a,r){
