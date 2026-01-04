@@ -1,0 +1,47 @@
+# llms.txt
+
+Project: Saorsa Growth Partners website
+Stack: Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS v4
+
+Summary:
+Marketing site for Saorsa Growth Partners with static pages plus Insights articles sourced from Substack RSS.
+Includes HubSpot-backed forms for contact and newsletter signup, and analytics scripts in the layout.
+
+Key Routes:
+- /
+- /partners
+- /guiding-principles
+- /contact
+- /insights
+- /insights/[slug]
+
+API Routes:
+- /api/hubspot/contact
+- /api/hubspot/insights
+
+Content Sources:
+- Substack RSS feed: https://conduitofvalue.substack.com/feed
+
+Important Files:
+- app/layout.tsx (global layout, metadata, analytics)
+- app/sitemap.ts (sitemap generation)
+- lib/substack.ts (RSS parsing and post fetching)
+- app/api/hubspot/* (HubSpot form submissions)
+
+Environment Variables:
+- HUBSPOT_PORTAL_ID (optional override)
+- HUBSPOT_FORM_GUID (contact form)
+- HUBSPOT_INSIGHTS_FORM_GUID (insights signup form)
+- HUBSPOT_REGION (e.g., na2)
+- NEXT_PUBLIC_SITE_URL (base URL for sitemap, optional)
+- VERCEL_URL (fallback base URL when deployed on Vercel)
+
+Commands:
+- pnpm dev
+- pnpm build
+- pnpm lint
+- pnpm start
+
+Deployment:
+Hosted on Vercel; pushes to main trigger deploys.
+Sitemap and robots are available at /sitemap.xml and /robots.txt.
